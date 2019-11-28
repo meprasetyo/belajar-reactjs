@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 class MobileHeader extends Component {
-	showSidebar(){
+	showSidebar() {
 		console.log("HI");
 	}
 	render() {

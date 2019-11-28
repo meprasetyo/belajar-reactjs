@@ -56,7 +56,7 @@ class Home extends Component {
 	editFeed(e, FeedData) {
 		let Cek = FeedData;
 		alert(Cek);
-		let postData = FeedData[1] ;
+		let postData = FeedData[1];
 		alert(postData);
 
 	}
@@ -162,7 +162,7 @@ class Home extends Component {
 		return (
 			<div className="row" id="Body">
 				<div className="medium-12 columns">
-				<a href="/tabel" className="button1" > <u>Tabel</u></a>
+					<a href="/tabel" className="button1" > <u>Tabel</u></a>
 					<a href="#" onClick={this.logout} className="logout">Logout</a>
 					<form onSubmit={this.feedUpdate} method="post">
 						<input name="userFeed" id="InputUserFeed" onChange={this.onChange} value={this.state.userFeed} type="text" placeholder="Write your feed here..." />

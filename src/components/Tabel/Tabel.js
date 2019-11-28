@@ -88,17 +88,17 @@ class Tabel extends Component {
 			<div className="App">
 				<h2>{this.state.title}</h2>
 				<div className="inputDivData">
-				<form ref="myForm" className="myForm">
-					<input type="text" id="nama" ref="nama" placeholder="Nama Anda" className="inputData inputDiv" />
-					<br />
-					<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" className="inputData inputDiv" />
-					<br />
-					<input type="number" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
-					<br />
-					<button onClick={(e) => this.fSubmit(e)} className="button button3">submit </button>
+					<form ref="myForm" className="myForm">
+						<input type="text" id="nama" ref="nama" placeholder="Nama Anda" className="inputData inputDiv" />
+						<br />
+						<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" className="inputData inputDiv" />
+						<br />
+						<input type="number" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
+						<br />
+						<button onClick={(e) => this.fSubmit(e)} className="button button3">submit </button>
 
-					<button onClick={this.aFa} className="button button2">Cancel </button>
-				</form>
+						<button onClick={this.aFa} className="button button2">Cancel </button>
+					</form>
 				</div>
 				<div className="div-tbl">
 					<table border="1" className="tbl-cls">
