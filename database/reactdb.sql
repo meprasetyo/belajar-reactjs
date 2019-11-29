@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Nov 2019 pada 11.06
+-- Waktu pembuatan: 29 Nov 2019 pada 08.47
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.1
 
@@ -58,8 +58,38 @@ INSERT INTO `feed` (`feed_id`, `feed`, `user_id`) VALUES
 (247, 'cek data ini saja', 1),
 (252, 'a', 1),
 (253, 'a', 1),
-(254, 'a', 1),
-(257, 'a', 1);
+(254, 'a', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `karyawan`
+--
+
+CREATE TABLE `karyawan` (
+  `id_karyawan` int(20) NOT NULL,
+  `KTP` varchar(50) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `no_hp` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `karyawan`
+--
+
+INSERT INTO `karyawan` (`id_karyawan`, `KTP`, `nama`, `no_hp`) VALUES
+(60, '33086652880003', 'Mohamad Eko Pasetyo', '0898-8909-9009'),
+(62, '33086652880001', 'Serj Adam Incloudya Hope', '0898-8970-9087'),
+(66, '33086652880007', 'kiki aja', '0898-8970-9007'),
+(67, '33086652880078', 'Ascii B', '0897-6789-1122'),
+(68, '33086652880071', 'Ascii C', '0897-6789-1125'),
+(69, '33086652880013', 'Ascii D', '0897-6789-1222'),
+(70, '33086652880014', 'rara', '0897-6789-9909'),
+(71, '33086652880015', 'nara', '0897-6789-1123'),
+(72, '33086652880016', 'nina', '0897-6789-1117'),
+(73, '33086652880021', 'santi', '0897-6789-4444'),
+(74, '33086652880111', 'ani aa', '0897-6789-4441'),
+(75, '009637860001', 'Ascii 001', '0897-6787-3894');
 
 -- --------------------------------------------------------
 
@@ -95,6 +125,12 @@ ALTER TABLE `feed`
   ADD PRIMARY KEY (`feed_id`);
 
 --
+-- Indeks untuk tabel `karyawan`
+--
+ALTER TABLE `karyawan`
+  ADD PRIMARY KEY (`id_karyawan`);
+
+--
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
@@ -108,7 +144,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `feed`
 --
 ALTER TABLE `feed`
-  MODIFY `feed_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=260;
+  MODIFY `feed_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+
+--
+-- AUTO_INCREMENT untuk tabel `karyawan`
+--
+ALTER TABLE `karyawan`
+  MODIFY `id_karyawan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

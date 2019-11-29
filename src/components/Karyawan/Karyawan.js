@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import './Home.css';
-import { PostData } from '../../services/PostData';
-import UserFeed from "../UserFeed/UserFeed";
+import './Karyawan.css';
+import { PostData } from '../../services/PostDataKaryawan';
+import KaryawanData from "../KaryawanData/KaryawanData";
 import { confirmAlert } from 'react-confirm-alert';
 import '../../styles/react-confirm-alert.css';
 
-class Home extends Component {
+class Karyawan extends Component {
 
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			data: [],
-			userFeed: '',
 			redirectToReferrer: false,
-			name: '',
+		
 		};
 
-		this.getUserFeed = this.getUserFeed.bind(this);
+		this.getKaryawanDataThis = this.getKaryawanDataThis.bind(this);
 		this.feedUpdate = this.feedUpdate.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.deleteFeed = this.deleteFeed.bind(this);
@@ -31,7 +30,7 @@ class Home extends Component {
 	componentWillMount() {
 
 		if (sessionStorage.getItem("userData")) {
-			this.getUserFeed();
+			this.getKaryawanDataThis();
 		}
 
 		else {
@@ -97,47 +96,18 @@ class Home extends Component {
 
 	}
 
-	/* deleteFeedAction(e) {
 
-		let updateIndex = e.target.getAttribute('value');
-
-		let feed_id = document.getElementById("del").getAttribute("data");
-		let cek = document.getElementById("del").getAttribute("value");
-		
-		let data = JSON.parse(sessionStorage.getItem("userData"));
-		
-		let postData = { user_id: data.userData.user_id, feed_id: feed_id };
-		if (postData) {
-
-			PostData('feedDelete', postData).then((result) => {
-				this.state.data.splice(updateIndex, 1);
-				this.setState({ data: this.state.data });
-
-				if (result.success) {
-
-					alert(result.success);
-
-					console.log(cek);
-				}
-				else
-					alert(result.error);
-
-			});
-		}
-	} */
-
-
-	getUserFeed() {
+	getKaryawanDataThis() {
 
 		let data = JSON.parse(sessionStorage.getItem("userData"));
 		this.setState({ name: data.userData.name });
 		let postData = { user_id: data.userData.user_id };
 
 		if (data) {
-			PostData('feed', postData).then((result) => {
+			PostData('karyawan', postData).then((result) => {
 				let responseJson = result;
-				if (responseJson.feedData) {
-					this.setState({ data: responseJson.feedData });
+				if (responseJson.karyawanData) {
+					this.setState({ data: responseJson.karyawanData });
 					console.log(this.state);
 				}
 			});
@@ -163,24 +133,17 @@ class Home extends Component {
 		return (
 			<div className="row" id="Body">
 				<div className="medium-12 columns">
-					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
 					<a href="/tabel" className="button1" > <u>Tabel</u></a>
+					<a href="/home" className="button1" > <u>Halaman Utama</u></a>
 					<a href="#" onClick={this.logout} className="logout">Logout</a>
-					<form onSubmit={this.feedUpdate} method="post">
-						<input name="userFeed" id="InputUserFeed" onChange={this.onChange} value={this.state.userFeed} type="text" placeholder="Write your feed here..." />
-						<input
-							type="submit"
-							value="Post"
-							className="button"
-							onClick={this.feedUpdate} />
-					</form>
+				
 
 				</div>
-				<UserFeed feedData={this.state.data} deleteFeed={this.deleteFeed} editFeed={this.editFeed} name={this.state.name} />
+				<KaryawanData feedData={this.state.data} deleteFeed={this.deleteFeed} editFeed={this.editFeed} name={this.state.name} />
 
 			</div>
 		);
 	}
 }
 
-export default Home;
+export default Karyawan;
