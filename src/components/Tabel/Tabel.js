@@ -24,6 +24,7 @@ class Tabel extends Component {
 		this.deleteKaryawan = this.deleteKaryawan.bind(this);
 
 		this.editKaryawan = this.editKaryawan.bind(this);
+		this.clearData = this.clearData.bind(this);
 
 		this.logout = this.logout.bind(this);
 	}
@@ -70,6 +71,10 @@ class Tabel extends Component {
 					PostData('karyawanUpdate', postData).then((result) => {
 						let responseJson = result;
 						this.setState({ data: responseJson.karyawanData });
+						this.refs.nama.value = '';
+						this.refs.ktp.value = '';
+						this.refs.no_hp.value = '';
+						return  this.getKaryawanDataThis();
 
 					})
 				}
@@ -77,6 +82,11 @@ class Tabel extends Component {
 		}
 	}
 
+	clearData(){
+		this.refs.nama.value = '';
+		this.refs.ktp.value = '';
+		this.refs.no_hp.value = '';
+	}
 
 	editKaryawan(e, FeedData) {
 		let Cek = FeedData;
@@ -179,7 +189,15 @@ class Tabel extends Component {
 								className="button"
 								onClick={this.karyawanUpdate}
 								className="button button3">
-								submit
+								Kirim
+						</button>
+						<button
+								type="button"
+								value="Post"
+								className="button"
+								onClick={this.clearData}
+								className="button button2">
+								Batal
 						</button>
 						</form>
 					</div>
