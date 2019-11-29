@@ -4,7 +4,7 @@ import './Tabel.css';
 import { PostData } from '../../services/PostDataKaryawan';
 import TabelData from "../TabelData/TabelData";
 import { confirmAlert } from 'react-confirm-alert';
-import '../../styles/react-confirm-alert.css';
+// import '../../styles/react-confirm-alert.css';
 
 
 class Tabel extends Component {
@@ -19,11 +19,11 @@ class Tabel extends Component {
 		};
 
 		this.getKaryawanDataThis = this.getKaryawanDataThis.bind(this);
-		this.feedUpdate = this.feedUpdate.bind(this);
+		this.karyawanUpdate = this.karyawanUpdate.bind(this);
 		this.onChange = this.onChange.bind(this);
-		this.deleteFeed = this.deleteFeed.bind(this);
+		this.deleteKaryawan = this.deleteKaryawan.bind(this);
 
-		this.editFeed = this.editFeed.bind(this);
+		this.editKaryawan = this.editKaryawan.bind(this);
 
 		this.logout = this.logout.bind(this);
 	}
@@ -41,65 +41,70 @@ class Tabel extends Component {
 	}
 
 	/* Aksi Create Data */
-	feedUpdate(e) {
+	karyawanUpdate(e) {
 
 		e.preventDefault();
 		console.log('udah disimpan')
-		
-	//	let data = JSON.parse(sessionStorage.getItem("nama"));
 
-		let postData = { nama: this.refs.nama.value, KTP:this.refs.ktp.value, no_hp:this.refs.no_hp.value  };
+		let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value };
+		let cekNama = this.refs.nama.value;
+		let cekKTP = this.refs.ktp.value;
+		let cekHP = this.refs.no_hp.value;
+
+
 		console.log(postData)
 
-		/*
-		let postData = { user_id: data.userData.user_id, feed: this.state.userFeed };
-		if (this.state.userFeed) { */
+		if (cekNama === '') {
+			alert('Nama tidak boleh kosong');
+		}
+		else {
 
-			PostData('karyawanUpdate', postData).then((result) => {
-				let responseJson = result;
-				this.setState({ data: responseJson.karyawanData });
+			if (cekKTP === '') {
+				alert('No KTP tidak boleh kosong');
+			}
+			else {
+				if (cekHP === '') {
+					alert('No HP tidak boleh kosong');
+				}
+				else {
+					PostData('karyawanUpdate', postData).then((result) => {
+						let responseJson = result;
+						this.setState({ data: responseJson.karyawanData });
 
-		//	});
-
-
-		})
-
-	
+					})
+				}
+			}
+		}
 	}
 
-	editFeed(e, FeedData) {
+
+	editKaryawan(e, FeedData) {
 		let Cek = FeedData;
-		alert(Cek);
-		let postData = FeedData[1];
-		alert(postData);
+		alert('Ubah data dengan ID : '+ Cek);
+		//let postData = FeedData[1];
+		//alert('Data ke - '+ postData);
 
 	}
 
-	deleteFeed(e, feedId) {
+	deleteKaryawan(e, KaryawanID) {
 
 		let updateIndex = e.target.getAttribute('value');
 
-		let cek = feedId;
-		let feed_id = document.getElementById("del").getAttribute("value");
+		let cek = KaryawanID;
+		// alert(cek);
 
-		let data = JSON.parse(sessionStorage.getItem("userData"));
-
-		let postData = { user_id: data.userData.user_id, feed_id: feedId };
+		let postData = { id_karyawan: KaryawanID };
 		if (postData) {
 
-			PostData('feedDelete', postData).then((result) => {
+			PostData('karyawanDelete', postData).then((result) => {
 				//this.state.data.filter((_, i) => i == feedId);
 
-
-
-
 				if (result.success) {
-					alert(feedId);
+					// alert(KaryawanID);
 
 					this.state.data.splice(updateIndex, 1);
 					this.setState({ data: this.state.data });
-					alert('ID : ' + feedId + ' Data Telah Dihapus');
-
+					alert('ID : ' + KaryawanID + ' Data Telah Dihapus');
 					console.log(cek);
 					console.log(updateIndex);
 				}
@@ -108,6 +113,8 @@ class Tabel extends Component {
 
 			});
 		}
+
+
 
 	}
 
@@ -134,7 +141,7 @@ class Tabel extends Component {
 		this.setState({ nama: e.target.value });
 		this.setState({ KTP: e.target.value });
 		this.setState({ userFeed: e.target.value });
-		
+
 	}
 
 	logout() {
@@ -170,7 +177,7 @@ class Tabel extends Component {
 								type="submit"
 								value="Post"
 								className="button"
-								onClick={this.feedUpdate}
+								onClick={this.karyawanUpdate}
 								className="button button3">
 								submit
 						</button>
@@ -181,10 +188,10 @@ class Tabel extends Component {
 				<div className="App">
 
 					<div className="div-tbl">
-					
-							
-							<TabelData karyawanData={this.state.data} deleteFeed={this.deleteFeed} editFeed={this.editFeed} name={this.state.name} />
-						
+
+
+						<TabelData karyawanData={this.state.data} deleteKaryawan={this.deleteKaryawan} editKaryawan={this.editKaryawan} name={this.state.name} />
+
 					</div>
 				</div>
 			</div>
