@@ -88,11 +88,23 @@ class Tabel extends Component {
 		this.refs.no_hp.value = '';
 	}
 
-	editKaryawan(e, FeedData) {
-		let Cek = FeedData;
+	editKaryawan(e, KaryawanID) {
+		let Cek = KaryawanID;
 		alert('Ubah data dengan ID : '+ Cek);
-		//let postData = FeedData[1];
-		//alert('Data ke - '+ postData);
+
+		let postData = { id_karyawan: KaryawanID };
+		if (postData) {
+
+			PostData('karyawanEdit', postData).then((result) => {
+				
+				let responseJson = result;
+				if (responseJson.karyawanData) {
+					let cekDATAINI = responseJson.karyawanData;
+					console.log(cekDATAINI);
+				}
+
+			});
+		}
 
 	}
 
@@ -185,7 +197,7 @@ class Tabel extends Component {
 
 							<button
 								type="submit"
-								value="Post"
+							
 								className="button"
 								onClick={this.karyawanUpdate}
 								className="button button3">
