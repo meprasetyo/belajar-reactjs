@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import Linkify from 'react-linkify';
 import './TabelData.css';
+
 //import TimeAgo from 'react-timeago';
 class TabelData extends Component {
-
 	constructor(props) {
 		super(props);
-
 	}
-
-
-
-
-
-
 	render() {
 		let data = this.props.karyawanData
-
 		return (
 			<table border="1" className="tbl-cls">
 				<thead id="thead">
@@ -45,34 +37,23 @@ class TabelData extends Component {
 								{TabelData.no_hp}
 							</td>
 							<td className="td-center">
-
 								<button id="del" className="button small btn-color" onClick={(e) => this.props.deleteKaryawan(e, TabelData.id_karyawan)} data={TabelData.id_karyawan} value={Kayawan}>
 									<i className="fa fa-user-times" aria-hidden="true"></i>
-									Hapus {TabelData.id_karyawan}
+									Hapus Data
 								</button>
-
 							</td>
 							<td className="td-center">
-
 								<button id="edit" className="button small btn-color2" onClick={(e) => this.props.editKaryawan(e, TabelData.id_karyawan)} data={TabelData.id_karyawan} value={Kayawan}>
 									<i className="fa fa-user-times" aria-hidden="true"></i>
-									Ubah {TabelData.id_karyawan}
+									Ubah Data
 								</button>
-
 							</td>
 						</tr>
 					</tbody>
-
-
 				)}
 			</table>
 		)
-
-
 	}
 }
-
-
-
 
 export default TabelData;

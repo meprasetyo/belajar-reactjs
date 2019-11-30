@@ -23,9 +23,6 @@ b{
 .edit-btn-color{
 	background-color: green;
 }
-
-
-
 .App-link {
 	color: #09d3ac;
 }
@@ -37,15 +34,12 @@ b{
 	width: 100%;
 	margin-top: 30px;
 }
-
 .inputData{
 	width: 400px;
 }
-
 .inputDiv{
 	margin: auto;
 }
-
 .inputDivData{
 	margin: auto;
 	padding-top: 50px;
@@ -54,15 +48,12 @@ b{
 .button2{
 	background-color: crimson;
 }
-
 .button3{
 	background-color: green;
 }
-
 #thead{
 	background: #e4e4e4;
 }
-
 .td-center{
 	text-align: center;
 }
