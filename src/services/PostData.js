@@ -1,10 +1,9 @@
 export function PostData(type, userData) {
+	//api URL
 	let BaseURL = 'http://localhost/api-belajar-reactjs/index.php';
 	return new Promise((resolve, reject) => {
-
 		fetch(BaseURL + '?tp=' + type,
 			{
-
 				method: 'POST',
 				headers:
 				{

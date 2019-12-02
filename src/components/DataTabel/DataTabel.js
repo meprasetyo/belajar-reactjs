@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './Tabel.css';
 import { PostData } from '../../services/PostDataKaryawan';
-import TabelData from "../TabelData/TabelData";
+//import DataTabelData from "../DataTabelData/DataTabelData";
+
+import './css/jquery.dataTables.css';
 import { confirmAlert } from 'react-confirm-alert';
 // import '../../styles/react-confirm-alert.css';
-
-class Tabel extends Component {
+const $ = require('jquery');
+$.Datatable = require('datatables.net');
+class DataTabel extends Component {
 
 	constructor(props) {
 		super(props);
@@ -59,51 +62,51 @@ class Tabel extends Component {
 						this.refs.nama.value = '';
 						this.refs.ktp.value = '';
 						this.refs.no_hp.value = '';
-						return  this.getKaryawanDataThis();
+						return this.getKaryawanDataThis();
 					})
 				}
 			}
 		}
 	}
-		/* Aksi Create Data */
-		karyawanUpdate(e) {
-			e.preventDefault();
-			console.log('udah disimpan')
-			let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value, id_karyawan:  this.refs.id_karyawan.value };
-			let cekNama = this.refs.nama.value;
-			let cekKTP = this.refs.ktp.value;
-			let cekHP = this.refs.no_hp.value;
-			console.log(postData)
-			if (cekNama === '') {
-				alert('Nama tidak boleh kosong');
+	/* Aksi Create Data */
+	karyawanUpdate(e) {
+		e.preventDefault();
+		console.log('udah disimpan')
+		let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value, id_karyawan: this.refs.id_karyawan.value };
+		let cekNama = this.refs.nama.value;
+		let cekKTP = this.refs.ktp.value;
+		let cekHP = this.refs.no_hp.value;
+		console.log(postData)
+		if (cekNama === '') {
+			alert('Nama tidak boleh kosong');
+		}
+		else {
+			if (cekKTP === '') {
+				alert('No KTP tidak boleh kosong');
 			}
 			else {
-				if (cekKTP === '') {
-					alert('No KTP tidak boleh kosong');
+				if (cekHP === '') {
+					alert('No HP tidak boleh kosong');
 				}
 				else {
-					if (cekHP === '') {
-						alert('No HP tidak boleh kosong');
-					}
-					else {
-						PostData('karyawanUpdate', postData).then((result) => {
-							let responseJson = result;
-							this.setState({ data: responseJson.karyawanData });
-							this.refs.nama.value = '';
-							this.refs.ktp.value = '';
-							this.refs.no_hp.value = '';
-							this.refs.id_karyawan.value = '';
-							const buttonKirim = document.getElementById('kirim');
-							buttonKirim.style.display = 'initial';
-							const buttonUpdate = document.getElementById('update');
-							buttonUpdate.className = 'button button3 hide';
-							return  this.getKaryawanDataThis();
-						})
-					}
+					PostData('karyawanUpdate', postData).then((result) => {
+						let responseJson = result;
+						this.setState({ data: responseJson.karyawanData });
+						this.refs.nama.value = '';
+						this.refs.ktp.value = '';
+						this.refs.no_hp.value = '';
+						this.refs.id_karyawan.value = '';
+						const buttonKirim = document.getElementById('kirim');
+						buttonKirim.style.display = 'initial';
+						const buttonUpdate = document.getElementById('update');
+						buttonUpdate.className = 'button button3 hide';
+						return this.getKaryawanDataThis();
+					})
 				}
 			}
 		}
-	clearData(){
+	}
+	clearData() {
 		this.refs.nama.value = '';
 		this.refs.ktp.value = '';
 		this.refs.no_hp.value = '';
@@ -114,12 +117,12 @@ class Tabel extends Component {
 	}
 	editKaryawan(e, KaryawanID) {
 		let Cek = KaryawanID;
-		alert('Ubah data dengan ID : '+ Cek);
+		alert('Ubah data dengan ID : ' + Cek);
 		let namaINPUT = this.refs.nama;
 		let ktpINPUT = this.refs.ktp;
 		let no_hpINPUT = this.refs.no_hp;
 		let id_karyawanINPUT = this.refs.id_karyawan;
-		
+
 		const buttonKirim = document.getElementById('kirim');
 		buttonKirim.style.display = 'none';
 		const buttonUpdate = document.getElementById('update');
@@ -127,7 +130,7 @@ class Tabel extends Component {
 		let postData = { id_karyawan: KaryawanID };
 		if (postData) {
 			PostData('karyawanEdit', postData).then((result) => {
-				
+
 				let responseJson = result;
 				if (responseJson.karyawanData) {
 					// let cekDATAINI = responseJson.karyawanData;
@@ -139,7 +142,7 @@ class Tabel extends Component {
 					ktpINPUT.value = cekDATAINI[0].KTP;
 					no_hpINPUT.value = cekDATAINI[0].no_hp;
 					id_karyawanINPUT.value = cekDATAINI[0].id_karyawan;
-				//	let cekDATA = 
+					//	let cekDATA = 
 					console.log(cekDATAKTP);
 					console.log(cekDATANAMA);
 					console.log(cekDATANOHP);
@@ -201,6 +204,40 @@ class Tabel extends Component {
 		this.setState({ redirectToReferrer: true });
 	}
 	render() {
+
+		let data = this.state.data
+		let data1 = this.state
+		
+		//	let data1 = data[''].nama;
+		console.log(data)
+		console.log(data1)
+
+		var table = $('#example').DataTable({
+			data:  this.state.data,
+			searchable: false,
+			orderable: false,
+			targets: 0,
+			columnDefs: [
+			{
+				targets: 1,
+				data: this.state
+				},
+				{
+				searchable: false,
+				orderable: false,
+				targets: -1,
+				data: null,
+				defaultContent: "<center><button className='button button3' style='background: green;padding: 10px;color:white'>Edit Data</button>				  <button className='button button2' style='background: red;padding: 10px;color:white'>Hapus Data</button></center>"
+			}]
+		});
+
+		table.on('order.dt search.dt', function () {
+			table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+				cell.innerHTML = i + 1;
+			});
+		}).draw();
+
+
 		if (this.state.redirectToReferrer) {
 			return (<Redirect to={'/login'} />)
 		}
@@ -213,7 +250,7 @@ class Tabel extends Component {
 					<div className="inputDivData">
 						<h2>Belajar React CRUD</h2><br />
 						<form ref="myForm" className="myForm">
-							<input type="hidden" id="id_karyawan" ref="id_karyawan" placeholder="id_karyawan" className="inputData inputDiv" />	
+							<input type="hidden" id="id_karyawan" ref="id_karyawan" placeholder="id_karyawan" className="inputData inputDiv" />
 							<input type="text" id="nama" ref="nama" placeholder="Nama Anda" className="inputData inputDiv" />
 							<br />
 							<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" className="inputData inputDiv" />
@@ -228,7 +265,7 @@ class Tabel extends Component {
 								className="button button3">
 								Kirim
 						</button>
-						<button
+							<button
 								type="submit"
 								id="update"
 								name="update"
@@ -236,7 +273,7 @@ class Tabel extends Component {
 								className="button button3 hide">
 								Update
 						</button>
-						<button
+							<button
 								type="button"
 								value="Post"
 								className="button"
@@ -249,11 +286,24 @@ class Tabel extends Component {
 				</div>
 				<div className="App">
 					<div className="div-tbl">
-						<TabelData karyawanData={this.state.data} deleteKaryawan={this.deleteKaryawan} editKaryawan={this.editKaryawan} name={this.state.name} />
+						<table border="1" id="example" className="display" width="100%" ref={el => this.el = el}>
+							<thead id="thead">
+								<tr>
+									<th><center>No</center></th>
+									<th><center>No KTP</center></th>
+									<th><center>Nama</center></th>
+									<th><center>No HP</center></th>
+									<th><center>Action</center></th>
+								</tr>
+
+							</thead>
+							<tbody></tbody>
+
+						</table>
 					</div>
 				</div>
 			</div>
 		);
 	}
 }
-export default Tabel;
+export default DataTabel;

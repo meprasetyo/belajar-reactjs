@@ -33,7 +33,7 @@ class Signup extends Component {
 	}
 	render() {
 		if (this.state.redirectToReferrer || sessionStorage.getItem('userData')) {
-			return (<Redirect to={'/home'} />)
+			return (<Redirect to={'/tabel'} />)
 		}
 		return (
 			<div className="row " id="sBody">
