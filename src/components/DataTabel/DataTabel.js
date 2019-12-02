@@ -189,9 +189,41 @@ class DataTabel extends Component {
 				if (responseJson.karyawanData) {
 					this.setState({ data: responseJson.karyawanData });
 					console.log(this.state);
+					
+					let cekDATAINI = responseJson.karyawanData;
+					
+					
+				//	let cekDATAKTP = Array(cekDATAINI[].[1]);
+					let cekDATANAMA = cekDATAINI[0].nama;
+					let cekDATANOHP = cekDATAINI[0].no_hp;
+			//		console.log(cekDATAKTP)
+					var table = $('#example').DataTable({
+						data:  this.state.data,
+						searchable: false,
+						orderable: false,
+						targets: 0,
+						columnDefs: [
+						{
+							targets: 1,
+							data: this.state
+							},
+							{
+							searchable: false,
+							orderable: false,
+							targets: -1,
+							data: null,
+							defaultContent: "<center><button className='button button3' style='background: green;padding: 10px;color:white'>Edit Data</button> 		<button className='button button2' style='background: red;padding: 10px;color:white'>Hapus Data</button></center>"
+						}]
+					});
+
+					table.on('order.dt search.dt', function () {
+						table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+							cell.innerHTML = i + 1;
+						});
+					}).draw();
 				}
 			});
-		}
+			}
 	}
 	onChange(e) {
 		this.setState({ nama: e.target.value });
@@ -207,35 +239,13 @@ class DataTabel extends Component {
 
 		let data = this.state.data
 		let data1 = this.state
+		let data2 = data1.nama
 		
 		//	let data1 = data[''].nama;
 		console.log(data)
-		console.log(data1)
+		console.log(data2)
 
-		var table = $('#example').DataTable({
-			data:  this.state.data,
-			searchable: false,
-			orderable: false,
-			targets: 0,
-			columnDefs: [
-			{
-				targets: 1,
-				data: this.state
-				},
-				{
-				searchable: false,
-				orderable: false,
-				targets: -1,
-				data: null,
-				defaultContent: "<center><button className='button button3' style='background: green;padding: 10px;color:white'>Edit Data</button>				  <button className='button button2' style='background: red;padding: 10px;color:white'>Hapus Data</button></center>"
-			}]
-		});
-
-		table.on('order.dt search.dt', function () {
-			table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-				cell.innerHTML = i + 1;
-			});
-		}).draw();
+		
 
 
 		if (this.state.redirectToReferrer) {
@@ -295,7 +305,6 @@ class DataTabel extends Component {
 									<th><center>No HP</center></th>
 									<th><center>Action</center></th>
 								</tr>
-
 							</thead>
 							<tbody></tbody>
 
