@@ -1,11 +1,8 @@
-
 INSTAL GLOBAL NPM
 >>> npm install -g create-react-app
 
-
 CREATE APP BY NAME
 >>> create-react-app name-app
-
 
 INSTALL REACT DOM
 >>> mpn install --save react-router-dom
@@ -14,6 +11,5 @@ INSTALL REACT DOM
 DATATABLES
 >>> mpn install --save datatables.net
 
-
-JQURY
+JQUERY
 >>> npm install jquery
