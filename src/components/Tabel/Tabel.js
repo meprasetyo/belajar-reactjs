@@ -207,8 +207,10 @@ class Tabel extends Component {
 		return (
 			<div className="row" id="Body">
 				<div className="medium-12 columns">
-					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
 					<a href="/home" className="button1" > <u>Halaman Utama</u></a>
+					<a href="/tabel" className="button1" > <u>Tabel</u></a>
+					<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
+					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
 					<a href="#" onClick={this.logout} className="logout">Logout</a>
 					<div className="inputDivData">
 						<h2>Belajar React CRUD</h2><br />

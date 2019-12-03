@@ -10,7 +10,7 @@ class TabelData extends Component {
 	render() {
 		let data = this.props.karyawanData
 		return (
-			<table border="1" className="tbl-cls">
+			<table border="1" className="tbl-cls" > 
 				<thead id="thead">
 					<tr>
 						<td className="text-center">No</td>
@@ -50,8 +50,10 @@ class TabelData extends Component {
 							</td>
 						</tr>
 					</tbody>
+					
 				)}
 			</table>
+			
 		)
 	}
 }

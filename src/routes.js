@@ -8,6 +8,7 @@ import Login from '././components/Login/Login';
 import Signup from '././components/Signup/Signup';
 import NotFound from '././components/NotFound/NotFound';
 
+import TableBacaData from '././components/TableBacaData/TableBacaData';
 
 
 const Routes = () => (
@@ -19,6 +20,7 @@ const Routes = () => (
 			<Route path="/Signup" component={Signup} />
 			<Route path="/karyawan" component={Karyawan} />
 			<Route path="/tabel" component={Tabel} />	
+			<Route path="/datatable" component={TableBacaData} />	
 			<Route path="*" component={NotFound} />
 		</Switch>
 	</BrowserRouter>
