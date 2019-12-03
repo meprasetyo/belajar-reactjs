@@ -9,7 +9,7 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			appName: "Belajar CRUD React JS",
+			appName: "Belajar React JS",
 			home: false
 		}
 	}
@@ -17,7 +17,7 @@ class App extends Component {
 		return (
 			<div className="off-canvas-wrapper">
 				<div className="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-					<div className="off-canvas-content" data-off-canvas-content>
+					<div className="off-canvas-content txt-center" data-off-canvas-content>
 						<MobileHeader name={this.state.appName} />
 						<Header name={this.state.appName} />
 						<Routes name={this.state.appName} />

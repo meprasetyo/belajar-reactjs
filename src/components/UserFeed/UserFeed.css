@@ -16,10 +16,17 @@ b{
 }
 .btn-color{
 	background-color: red;
+	min-width:60px;
 }
 .btn-color2{
 	background-color: green;
+	min-width:60px;
 }
 .edit-btn-color{
 	background-color: green;
+	min-width:60px;
+}
+.pad{
+	padding-top: 25px;
+	padding-left: 12px;
 }

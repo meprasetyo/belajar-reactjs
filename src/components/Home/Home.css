@@ -19,3 +19,23 @@
 .text-center{
 	text-align: center;
 }
+
+#button-send{
+	background-color:green;
+	color: white;
+}
+#button-send:hover{
+	background-color:#002500;
+	color: white;
+}
+
+#button-update{
+	background-color:#1682d8;
+	color: white;
+	display:none;
+}
+
+#button-update:hover{
+	background-color:#002500;
+	color: white;
+}
