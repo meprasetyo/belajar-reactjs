@@ -7,7 +7,6 @@ CREATE APP BY NAME
 INSTALL REACT DOM
 >>> mpn install --save react-router-dom
 
-
 DATATABLES
 >>> mpn install --save datatables.net
 
