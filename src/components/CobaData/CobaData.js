@@ -37,10 +37,27 @@ export default class CobaData extends Component {
 
 	render() {
 		let data = this.props.data;
-		console.log(data);
+		let printData = data;
+		console.log(printData);
+		let table = $('#exc').dataTable(
+			{
+				data: printData ,
+				columns: [
+					{ title: "ID" },
+					{ title: "Nama" },
+					{ title: "Nomor KTP" },
+					{ title: "Nomor HP" },
+				],
+				searchable: false,
+				orderable: false,
+				targets: 0,
+			}
+		);
+		console.log(table);
+
 		return (
 			<div>
-				<table className="display" width="100%" ref={el => this.el = el} >
+				<table className="display" width="100%" id="exc" >
 
 				</table>
 			</div>
