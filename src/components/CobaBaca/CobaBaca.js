@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { PostData } from '../../services/PostDataKaryawan';
 import TabelData from "../TabelData/TabelData";
-import './percobaan1Data.css';
-import TableBaca from '../percobaan1/percobaan1';
+import './CobaBaca.css';
+import CobaData from '../CobaData/CobaData';
 
-class percobaan1Data extends Component {
+class CobaBaca extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -198,22 +198,6 @@ class percobaan1Data extends Component {
 		sessionStorage.clear();
 		this.setState({ redirectToReferrer: true });
 	}
-	render() {
-		let data = this.props.data;
-		console.log(data);
-		return (
-			<div className="App">
-				<div className="tbl-mr">
-					<a href="/home" className="button1" > <u>Halaman Utama</u></a>
-					<a href="/tabel" className="button1" > <u>Tabel</u></a>
-					<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
-					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
-					<a href="#" onClick={this.logout} className="logout">Logout</a>
-					<TableBaca data={this.props.data} />
-				</div>
-			</div>
-		);
-	}
 	dataSet = [
 		["Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800"],
 		["Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750"],
@@ -252,5 +236,23 @@ class percobaan1Data extends Component {
 		["Martena Mccray", "Post-Sales support", "Edinburgh", "8240", "2011/03/09", "$324,050"],
 		["Unity Butler", "Marketing Designer", "San Francisco", "5384", "2009/12/09", "$85,675"]
 	];
+	render() {
+		let data =this.state.data;
+		console.log(data);
+		return (
+			<div className="App">
+				<div className="tbl-mr">
+					<a href="/home" className="button1" > <u>Halaman Utama</u></a>
+					<a href="/tabel" className="button1" > <u>Tabel</u></a>
+					<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
+					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
+					<a href="#" onClick={this.logout} className="logout">Logout</a>
+					<CobaData data={this.state.data}  />
+				</div>
+			</div>
+		);
+	}
+
+	
 }
-export default percobaan1Data;
+export default CobaBaca;
