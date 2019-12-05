@@ -9,7 +9,7 @@ import Signup from '././components/Signup/Signup';
 import NotFound from '././components/NotFound/NotFound';
 
 import TableBacaData from '././components/TableBacaData/TableBacaData';
-import CobaBaca from './components/CobaBaca/CobaBaca';
+import DatatablesKry from './components/DatatablesKry/DatatablesKry';
 
 
 const Routes = () => (
@@ -22,7 +22,7 @@ const Routes = () => (
 			<Route path="/karyawan" component={Karyawan} />
 			<Route path="/tabel" component={Tabel} />	
 			<Route path="/datatable" component={TableBacaData} />	
-			<Route path="/CobaBaca" component={CobaBaca} />	
+			<Route path="/DatatablesKaryawan" component={DatatablesKry} />	
 			<Route path="*" component={NotFound} />
 		</Switch>
 	</BrowserRouter>

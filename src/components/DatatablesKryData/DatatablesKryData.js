@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Linkify from 'react-linkify';
-import './CobaData.css';
+import './DatatablesKryData.css';
 import DataTable from 'react-data-table-component';
 
 
@@ -26,7 +26,7 @@ import DataTable from 'react-data-table-component';
 		},
 	];
 
-	export default class CobaData extends Component {
+	export default class DatatablesKryData extends Component {
 	render() {
 		let data = this.props.data;
 		return (

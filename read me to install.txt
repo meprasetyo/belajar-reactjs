@@ -12,3 +12,6 @@ DATATABLES
 
 JQUERY
 >>> npm install jquery
+
+DATATABLES
+>>> npm install react-data-table-component styled-components
