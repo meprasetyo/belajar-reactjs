@@ -10,7 +10,8 @@ import NotFound from '././components/NotFound/NotFound';
 
 import TableBacaData from '././components/TableBacaData/TableBacaData';
 import DatatablesKry from './components/DatatablesKry/DatatablesKry';
-
+import DatatablesKryVersi2 from './components/DatatablesKryVersi2/DatatablesKryVersi2';
+import PaginationExc from './components/PaginationExc/PaginationExc';
 
 const Routes = () => (
 	<BrowserRouter >
@@ -23,7 +24,11 @@ const Routes = () => (
 			<Route path="/tabel" component={Tabel} />	
 			<Route path="/datatable" component={TableBacaData} />	
 			<Route path="/DatatablesKaryawan" component={DatatablesKry} />	
+			<Route path="/DatatablesKaryawanVersi2" component={DatatablesKryVersi2} />	
+			<Route path="/PaginationExc" component={PaginationExc} />	
 			<Route path="*" component={NotFound} />
+
+			PaginationExc
 		</Switch>
 	</BrowserRouter>
 );

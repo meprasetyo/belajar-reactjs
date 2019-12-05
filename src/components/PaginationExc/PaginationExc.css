@@ -40,3 +40,12 @@
 	color: white;
 }
 
+.ul-pagination{
+	margin: auto;
+	display: table;
+}
+
+.pad-pagination{
+	padding-top: 216px;
+	font-weight: bold;
+}

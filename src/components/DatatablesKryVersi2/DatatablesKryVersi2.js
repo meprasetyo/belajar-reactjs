@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { PostData } from '../../services/PostDataKaryawan';
 import TabelData from "../TabelData/TabelData";
-import './DatatablesKry.css';
-import DatatablesKryData from '../DatatablesKryData/DatatablesKryData';
+import './DatatablesKryVersi2.css';
+import DatatablesKryVersi2Data from '../DatatablesKryVersi2Data/DatatablesKryVersi2Data';
 
-class DatatablesKry extends Component {
+class DatatablesKryVersi2 extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -211,7 +211,7 @@ class DatatablesKry extends Component {
 					<a href="/DatatablesKaryawan" className="button1" > <u>Datatables Karyawan</u></a>
 					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
 					<a href="#" onClick={this.logout} className="logout">Logout</a>
-					<DatatablesKryData data={this.state.data}  />
+					<DatatablesKryVersi2Data data={this.state.data}  />
 				</div>
 			</div>
 		);
@@ -219,4 +219,4 @@ class DatatablesKry extends Component {
 
 	
 }
-export default DatatablesKry;
+export default DatatablesKryVersi2;

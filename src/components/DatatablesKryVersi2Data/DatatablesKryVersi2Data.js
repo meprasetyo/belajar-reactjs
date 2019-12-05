@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Linkify from 'react-linkify';
-import './DatatablesKryData.css';
+import './DatatablesKryVersi2Data.css';
 import DataTable from 'react-data-table-component';
 
 	const columns = [
@@ -45,7 +45,7 @@ import DataTable from 'react-data-table-component';
 		},
 	];
 
-	export default class DatatablesKryData extends Component {
+	export default class DatatablesKryVersi2Data extends Component {
 	render() {
 		let data = this.props.data;
 		return (

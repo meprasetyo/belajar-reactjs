@@ -13,5 +13,8 @@ DATATABLES
 JQUERY
 >>> npm install jquery
 
-DATATABLES
+DATATABLES COMPONENT
 >>> npm install react-data-table-component styled-components
+
+PAGINATION
+>>> npm install react-js-pagination
