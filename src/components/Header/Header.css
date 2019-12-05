@@ -1,7 +1,8 @@
 .headcolor
 {
-	background-color: Blue;
+	background-color: #3f3f42;
 }
-#tit{
+#title{
 	color: white;
+	text-align: center;
 }
