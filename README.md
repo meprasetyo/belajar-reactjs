@@ -6,6 +6,3 @@
 * **Baca "read me to install.txt" untuk instalasi...:** 
 * **"https://github.com/meprasetyo/belajar-reactjs/blob/master/read%20me%20to%20install.txt"**
 * **[My ](http://purwokerto.azurewebsites.net/)[Website](http://purwokerto.azurewebsites.net/)**
-
-
-[![Watch the video](https://www.youtube.com/watch?v=TlB_eWDSMt4)](https://youtu.be/vt5fpE0bzSY)
