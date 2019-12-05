@@ -8,4 +8,4 @@
 * **[My ](http://purwokerto.azurewebsites.net/)[Website](http://purwokerto.azurewebsites.net/)**
 
 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
+[![Watch the video](https://www.youtube.com/watch?v=TlB_eWDSMt4)](https://youtu.be/vt5fpE0bzSY)
