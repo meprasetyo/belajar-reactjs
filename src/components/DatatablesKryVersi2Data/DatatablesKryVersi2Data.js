@@ -12,7 +12,7 @@ export default class DatatablesKryVersi2Data extends Component {
 		let data = this.props.data;
 		return (
 
-			<div style={{ maxWidth: '100%' }} className="tblMaterialTable">
+			<div  className="tblMaterialTable">
 				<MaterialTable
 					columns={[
 						{ title: 'ID', field: 'id_karyawan' },
@@ -44,4 +44,3 @@ export default class DatatablesKryVersi2Data extends Component {
 		);
 	}
 }
-

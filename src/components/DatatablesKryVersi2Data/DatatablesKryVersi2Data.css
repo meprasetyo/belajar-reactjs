@@ -60,6 +60,9 @@ b{
 	text-align: center;
 }
 
+.tblMaterialTable{
+	max-width: 1120px;
+}
 .tblMaterialTable input{
 	padding-left: 15px;
 	border: 1px solid white;

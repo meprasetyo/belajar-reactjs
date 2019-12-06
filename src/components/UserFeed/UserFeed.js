@@ -29,7 +29,7 @@ class UserFeed extends Component {
 									</div>
 								</div>
 								<div className="small-12 medium-4 columns add-friend">
-									<div className="add-friend-action">
+									<div className="add-friend-action" style={{ marginTop: '-15px' }}>
 											<button id="edit" className="button small btn-color2" onClick={(e) => this.props.feedEdit(e, feedData.feed_id)} data={feedData.feed_id} value={index}>
 											<i className="fa fa-user-times" aria-hidden="true"></i>
 											edit 

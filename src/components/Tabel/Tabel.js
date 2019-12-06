@@ -208,6 +208,7 @@ class Tabel extends Component {
 		return (
 			<div className="row" id="Body">
 				<div className="medium-12 columns">
+				<div style={{ paddingTop:'50px', textAlign:'center' }}>
 					<a href="/home" className="button1" > <u>Halaman Utama</u></a>
 					<a href="/tabel" className="button1" > <u>Tabel</u></a>
 					<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
@@ -215,6 +216,7 @@ class Tabel extends Component {
 					<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
 					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
 					<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
+					</div>
 					<div className="inputDivData">
 						<h2>Belajar React CRUD</h2><br />
 						<form ref="myForm" className="myForm">

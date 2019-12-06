@@ -185,7 +185,8 @@ class Home extends Component {
 
 		return (
 			<div className="row" id="Body">
-				<div className="medium-12 columns">
+				<div className="medium-12 columns" style={{textAlign:'center'}}>
+					<div style={{ paddingBottom:'50px', paddingTop:'50px' }}>
 					<a href="/home" className="button1" > <u>Halaman Utama</u></a>
 					<a href="/tabel" className="button1" > <u>Tabel</u></a>
 					<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
@@ -193,6 +194,7 @@ class Home extends Component {
 					<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
 					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
 					<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
+					</div>
 					<form onSubmit={this.feedInsert} method="post">
 						<input name="feed_id" id="feed_id" ref="feed_id" type="hidden"/>
 						<input name="InputUserFeed" id="InputUserFeed" ref="InputUserFeed" type="text" placeholder="Write your feed here..." />
