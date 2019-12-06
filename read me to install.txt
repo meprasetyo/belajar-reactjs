@@ -18,3 +18,8 @@ DATATABLES COMPONENT
 
 PAGINATION
 >>> npm install react-js-pagination
+
+MATERIAL TABLE
+>>> npm install material-table --save
+@COMPONENT MATERIAL TABLE (MATERIAL UI / CORE)
+>>> npm install @material-ui/core

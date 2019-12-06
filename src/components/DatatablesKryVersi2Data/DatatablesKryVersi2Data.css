@@ -59,3 +59,9 @@ b{
 .td-center{
 	text-align: center;
 }
+
+.tblMaterialTable input{
+	padding-left: 15px;
+	border: 1px solid white;
+    box-shadow: inset 0 0px 0px rgba(10,10,10,.1);
+}

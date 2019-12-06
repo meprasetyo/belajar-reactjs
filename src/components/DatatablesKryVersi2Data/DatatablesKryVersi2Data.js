@@ -1,59 +1,29 @@
 import React, { Component } from 'react';
 import Linkify from 'react-linkify';
 import './DatatablesKryVersi2Data.css';
-import DataTable from 'react-data-table-component';
 
-	const columns = [
-	/*	{
-			name: 'ID',
-			selector: 'id_karyawan',
-			cell: row => <div>	
-								
-						</div>,
-		}, */
-		{
-			name: 'Nama',
-			selector: 'nama'
-		},
-		{
-			name: 'Nomor KTP',
-			selector: 'KTP'
-		},
-		{
-			name: 'Nomor HP',
-			selector: 'no_hp'
-		},
-		{
-			name: 'Aksi Hapus',
-			selector: 'id_karyawan',
-			cell: row => <div>	
-							<button id="del" className="button small btn-color">
-							<i className="fa fa-user-times" aria-hidden="true"></i>
-								Hapus Data
-							</button>
-						</div>,
-		},
-		{
-			name: 'Aksi Edit',
-			selector: 'id_karyawan',
-			cell: row => <div>	
-							<button id="del" className="button small btn-color2">
-							<i className="fa fa-user-times" aria-hidden="true"></i>
-								Ubah Data
-							</button>
-						</div>,
-		},
-	];
+import MaterialTable from 'material-table';
+import IconButton from '@material-ui/core/IconButton';
+
+
 
 	export default class DatatablesKryVersi2Data extends Component {
 	render() {
 		let data = this.props.data;
 		return (
-			<DataTable
-				title="Tabel Data Karyawan"
-				columns={columns}
-				data={data}
-			/>
+		
+			<div style={{ maxWidth: '100%' }} className="tblMaterialTable">
+				<MaterialTable
+					columns={[
+						{ title: 'Adı', field: 'id_karyawan' },
+						{ title: 'Soyadı', field: 'nama' },
+						{ title: 'Doğum Yılı', field: 'KTP', type: 'numeric' },
+						{ title: 'Doğum Yeri', field: 'no_hp',  type: 'numeric' }
+					]}
+					data={data}
+					title="Demo Title"
+				/>
+			</div>
 		);
 	}
 }
