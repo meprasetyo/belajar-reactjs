@@ -212,8 +212,9 @@ class Tabel extends Component {
 					<a href="/tabel" className="button1" > <u>Tabel</u></a>
 					<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
 					<a href="/DatatablesKaryawan" className="button1" > <u>Datatables Karyawan</u></a>
+					<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
 					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
-					<a href="#" onClick={this.logout} className="logout">Logout</a>
+					<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
 					<div className="inputDivData">
 						<h2>Belajar React CRUD</h2><br />
 						<form ref="myForm" className="myForm">

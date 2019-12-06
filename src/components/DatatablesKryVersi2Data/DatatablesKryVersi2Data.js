@@ -15,13 +15,13 @@ import IconButton from '@material-ui/core/IconButton';
 			<div style={{ maxWidth: '100%' }} className="tblMaterialTable">
 				<MaterialTable
 					columns={[
-						{ title: 'Adı', field: 'id_karyawan' },
-						{ title: 'Soyadı', field: 'nama' },
-						{ title: 'Doğum Yılı', field: 'KTP', type: 'numeric' },
-						{ title: 'Doğum Yeri', field: 'no_hp',  type: 'numeric' }
+						{ title: 'ID', field: 'id_karyawan' },
+						{ title: 'Nama', field: 'nama' },
+						{ title: 'KTP', field: 'KTP', type: 'numeric' },
+						{ title: 'No HP', field: 'no_hp',  type: 'numeric' }
 					]}
 					data={data}
-					title="Demo Title"
+					title="Data Karyawan"
 				/>
 			</div>
 		);

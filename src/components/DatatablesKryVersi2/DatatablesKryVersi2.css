@@ -27,6 +27,12 @@
 	margin: 30px;;
 }
 
+.tblMaterialTable{
+	padding-top: 50px; 
+	width: 95%;
+	margin: auto;
+}
+
 .tblMaterialTable input{
 	padding-left: 15px;
 	border: 1px solid white;
