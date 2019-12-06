@@ -214,7 +214,43 @@ class DatatablesKryVersi2 extends Component {
 					<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
 					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
 					<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
-					<DatatablesKryVersi2Data data={this.state.data}  />
+					<div className="inputDivData">
+						<h2>Belajar React CRUD</h2><br />
+						<form ref="myForm" className="myForm">
+							<input type="hidden" id="id_karyawan" ref="id_karyawan" placeholder="id_karyawan" className="inputData inputDiv" />	
+							<input type="text" id="nama" ref="nama" placeholder="Nama Anda" className="inputData inputDiv" />
+							<br />
+							<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" className="inputData inputDiv" />
+							<br />
+							<input type="text" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
+							<br />
+							<button
+								type="submit"
+								id="kirim"
+								name="kirim"
+								onClick={this.karyawanInput}
+								className="button button3">
+								Kirim
+						</button>
+						<button
+								type="submit"
+								id="update"
+								name="update"
+								onClick={this.karyawanUpdate}
+								className="button button3 hide">
+								Update
+						</button>
+						<button
+								type="button"
+								value="Post"
+								className="button"
+								onClick={this.clearData}
+								className="button button2">
+								Batal
+						</button>
+						</form>
+					</div>
+					<DatatablesKryVersi2Data data={this.state.data}  deleteKaryawan={this.deleteKaryawan} editKaryawan={this.editKaryawan} name={this.state.name}  />
 				</div>
 			</div>
 		);
