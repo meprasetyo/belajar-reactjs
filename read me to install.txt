@@ -23,3 +23,5 @@ MATERIAL TABLE
 >>> npm install material-table --save
 @COMPONENT MATERIAL TABLE (MATERIAL UI / CORE)
 >>> npm install @material-ui/core
+LETAKAN PADA PUBLIC (HEAD)
+>>> <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
