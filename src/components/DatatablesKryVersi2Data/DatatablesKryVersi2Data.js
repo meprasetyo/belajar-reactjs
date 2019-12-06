@@ -8,11 +8,13 @@ import IconButton from '@material-ui/core/IconButton';
 
 
 export default class DatatablesKryVersi2Data extends Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
 		let data = this.props.data;
 		return (
-
-			<div  className="tblMaterialTable">
+			<div className='tblMaterialTable'>
 				<MaterialTable
 					columns={[
 						{ title: 'ID', field: 'id_karyawan' },

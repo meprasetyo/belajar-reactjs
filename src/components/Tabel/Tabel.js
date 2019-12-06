@@ -177,6 +177,53 @@ class Tabel extends Component {
 			});
 		}
 	}
+
+	deleteKaryawan(e, KaryawanID) {
+		let updateIndex = e.target.getAttribute('value');
+		let cek = KaryawanID;
+		// alert(cek);
+		let postData = { id_karyawan: KaryawanID };
+		confirmAlert({
+			title: 'Hapus Karyawan',
+			message: 'Are you sure to delete this data.',
+			buttons: [
+				{
+					label: 'Yes',
+					onClick: () => {
+						if (postData) {
+							PostData('karyawanDelete', postData).then((result) => {
+								//this.state.data.filter((_, i) => i == feedId);
+								if (result.success) {
+									// alert(KaryawanID);
+									this.state.data.splice(updateIndex, 1);
+									this.setState({ data: this.state.data });
+									alert('ID : ' + KaryawanID + ' Data Telah Dihapus');
+									console.log(cek);
+									console.log(updateIndex);
+									this.refs.nama.value = '';
+									this.refs.ktp.value = '';
+									this.refs.no_hp.value = '';
+									this.refs.id_karyawan.value = '';
+									const buttonKirim = document.getElementById('kirim');
+									buttonKirim.style.display = 'initial';
+									const buttonUpdate = document.getElementById('update');
+									buttonUpdate.className = 'button button3 hide';
+								}
+								else
+									alert(result.error);
+							});
+						}
+						
+					}
+				},
+				{
+					label: 'No',
+					onClick: () => alert('Data Tidak Dihapus')
+				}
+			]
+		});
+	}
+
 	getKaryawanDataThis() {
 		let data = JSON.parse(sessionStorage.getItem("userData"));
 		this.setState({ name: data.userData.name });

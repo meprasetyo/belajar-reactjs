@@ -6,6 +6,8 @@ import { PostData } from '../../services/PostDataKaryawan';
 import TabelData from "../TabelData/TabelData";
 import './DatatablesKryVersi2.css';
 import DatatablesKryVersi2Data from '../DatatablesKryVersi2Data/DatatablesKryVersi2Data';
+import { confirmAlert } from 'react-confirm-alert';
+import '../../styles/react-confirm-alert.css';
 
 class DatatablesKryVersi2 extends Component {
 	constructor(props) {
@@ -59,51 +61,51 @@ class DatatablesKryVersi2 extends Component {
 						this.refs.nama.value = '';
 						this.refs.ktp.value = '';
 						this.refs.no_hp.value = '';
-						return  this.getKaryawanDataThis();
+						return this.getKaryawanDataThis();
 					})
 				}
 			}
 		}
 	}
-		/* Aksi Create Data */
-		karyawanUpdate(e) {
-			e.preventDefault();
-			console.log('udah disimpan')
-			let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value, id_karyawan:  this.refs.id_karyawan.value };
-			let cekNama = this.refs.nama.value;
-			let cekKTP = this.refs.ktp.value;
-			let cekHP = this.refs.no_hp.value;
-			console.log(postData)
-			if (cekNama === '') {
-				alert('Nama tidak boleh kosong');
+	/* Aksi Create Data */
+	karyawanUpdate(e) {
+		e.preventDefault();
+		console.log('udah disimpan')
+		let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value, id_karyawan: this.refs.id_karyawan.value };
+		let cekNama = this.refs.nama.value;
+		let cekKTP = this.refs.ktp.value;
+		let cekHP = this.refs.no_hp.value;
+		console.log(postData)
+		if (cekNama === '') {
+			alert('Nama tidak boleh kosong');
+		}
+		else {
+			if (cekKTP === '') {
+				alert('No KTP tidak boleh kosong');
 			}
 			else {
-				if (cekKTP === '') {
-					alert('No KTP tidak boleh kosong');
+				if (cekHP === '') {
+					alert('No HP tidak boleh kosong');
 				}
 				else {
-					if (cekHP === '') {
-						alert('No HP tidak boleh kosong');
-					}
-					else {
-						PostData('karyawanUpdate', postData).then((result) => {
-							let responseJson = result;
-							this.setState({ data: responseJson.karyawanData });
-							this.refs.nama.value = '';
-							this.refs.ktp.value = '';
-							this.refs.no_hp.value = '';
-							this.refs.id_karyawan.value = '';
-							const buttonKirim = document.getElementById('kirim');
-							buttonKirim.style.display = 'initial';
-							const buttonUpdate = document.getElementById('update');
-							buttonUpdate.className = 'button button3 hide';
-							return  this.getKaryawanDataThis();
-						})
-					}
+					PostData('karyawanUpdate', postData).then((result) => {
+						let responseJson = result;
+						this.setState({ data: responseJson.karyawanData });
+						this.refs.nama.value = '';
+						this.refs.ktp.value = '';
+						this.refs.no_hp.value = '';
+						this.refs.id_karyawan.value = '';
+						const buttonKirim = document.getElementById('kirim');
+						buttonKirim.style.display = 'initial';
+						const buttonUpdate = document.getElementById('update');
+						buttonUpdate.className = 'button button3 hide';
+						return this.getKaryawanDataThis();
+					})
 				}
 			}
 		}
-	clearData(){
+	}
+	clearData() {
 		this.refs.nama.value = '';
 		this.refs.ktp.value = '';
 		this.refs.no_hp.value = '';
@@ -114,12 +116,12 @@ class DatatablesKryVersi2 extends Component {
 	}
 	editKaryawan(e, KaryawanID) {
 		let Cek = KaryawanID;
-		alert('Ubah data dengan ID : '+ Cek);
+		alert('Ubah data dengan ID : ' + Cek);
 		let namaINPUT = this.refs.nama;
 		let ktpINPUT = this.refs.ktp;
 		let no_hpINPUT = this.refs.no_hp;
 		let id_karyawanINPUT = this.refs.id_karyawan;
-		
+
 		const buttonKirim = document.getElementById('kirim');
 		buttonKirim.style.display = 'none';
 		const buttonUpdate = document.getElementById('update');
@@ -127,7 +129,7 @@ class DatatablesKryVersi2 extends Component {
 		let postData = { id_karyawan: KaryawanID };
 		if (postData) {
 			PostData('karyawanEdit', postData).then((result) => {
-				
+
 				let responseJson = result;
 				if (responseJson.karyawanData) {
 					// let cekDATAINI = responseJson.karyawanData;
@@ -139,7 +141,7 @@ class DatatablesKryVersi2 extends Component {
 					ktpINPUT.value = cekDATAINI[0].KTP;
 					no_hpINPUT.value = cekDATAINI[0].no_hp;
 					id_karyawanINPUT.value = cekDATAINI[0].id_karyawan;
-				//	let cekDATA = 
+					//	let cekDATA = 
 					console.log(cekDATAKTP);
 					console.log(cekDATANAMA);
 					console.log(cekDATANOHP);
@@ -147,21 +149,53 @@ class DatatablesKryVersi2 extends Component {
 			});
 		}
 	}
+
 	deleteKaryawan(e, KaryawanID) {
 		let updateIndex = e.target.getAttribute('value');
 		let cek = KaryawanID;
-		// alert(cek);
-		let postData = { id_karyawan: KaryawanID };
-		if (postData) {
-			PostData('karyawanDelete', postData).then((result) => {
-				//this.state.data.filter((_, i) => i == feedId);
-				if (result.success) {
-					// alert(KaryawanID);
-					this.state.data.splice(updateIndex, 1);
-					this.setState({ data: this.state.data });
+		confirmAlert({
+			title: 'Hapus Karyawan',
+			message: 'Are you sure to delete this data.',
+			buttons: [
+				{
+					label: 'Yes',
+					onClick: () => {
+						let postData = { id_karyawan : KaryawanID };
+							PostData('karyawanDeleteTableR', postData).then((result) => {
+								let responseJson = result;
+								this.setState({ data: responseJson.karyawanData });
+									alert('ID : ' + KaryawanID + ' Data Telah Dihapus');
+									this.refs.nama.value = '';
+									this.refs.ktp.value = '';
+									this.refs.no_hp.value = '';
+									this.refs.id_karyawan.value = '';
+									const buttonKirim = document.getElementById('kirim');
+									buttonKirim.style.display = 'initial';
+									const buttonUpdate = document.getElementById('update');
+									buttonUpdate.className = 'button button3 hide';	
+							});
+						
+					}
+				},
+				{
+					label: 'No',
+					onClick: () => alert('Data Tidak Dihapus')
+				}
+			]
+		});
+	}
+
+	/*
+
+	deleteKaryawan(e, KaryawanID) {
+		let updateIndex = e.target.getAttribute('value');
+		let cek = KaryawanID;
+		let postData = { id_karyawan : KaryawanID };
+		alert(postData)
+			PostData('karyawanDeleteTableR', postData).then((result) => {
+				let responseJson = result;
+				this.setState({ data: responseJson.karyawanData });
 					alert('ID : ' + KaryawanID + ' Data Telah Dihapus');
-					console.log(cek);
-					console.log(updateIndex);
 					this.refs.nama.value = '';
 					this.refs.ktp.value = '';
 					this.refs.no_hp.value = '';
@@ -169,13 +203,13 @@ class DatatablesKryVersi2 extends Component {
 					const buttonKirim = document.getElementById('kirim');
 					buttonKirim.style.display = 'initial';
 					const buttonUpdate = document.getElementById('update');
-					buttonUpdate.className = 'button button3 hide';
-				}
-				else
-					alert(result.error);
+					buttonUpdate.className = 'button button3 hide';	
 			});
-		}
+		
 	}
+
+	*/
+
 	getKaryawanDataThis() {
 		let data = JSON.parse(sessionStorage.getItem("userData"));
 		this.setState({ name: data.userData.name });
@@ -200,9 +234,9 @@ class DatatablesKryVersi2 extends Component {
 		sessionStorage.clear();
 		this.setState({ redirectToReferrer: true });
 	}
-	
+
 	render() {
-		let data =this.state.data;
+		let data = this.state.data;
 		console.log(data);
 		return (
 			<div className="App">
@@ -217,7 +251,7 @@ class DatatablesKryVersi2 extends Component {
 					<div className="inputDivData">
 						<h2>Belajar React CRUD</h2><br />
 						<form ref="myForm" className="myForm">
-							<input type="hidden" id="id_karyawan" ref="id_karyawan" placeholder="id_karyawan" className="inputData inputDiv" />	
+							<input type="hidden" id="id_karyawan" ref="id_karyawan" placeholder="id_karyawan" className="inputData inputDiv" />
 							<input type="text" id="nama" ref="nama" placeholder="Nama Anda" className="inputData inputDiv" />
 							<br />
 							<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" className="inputData inputDiv" />
@@ -232,7 +266,7 @@ class DatatablesKryVersi2 extends Component {
 								className="button button3">
 								Kirim
 						</button>
-						<button
+							<button
 								type="submit"
 								id="update"
 								name="update"
@@ -240,7 +274,7 @@ class DatatablesKryVersi2 extends Component {
 								className="button button3 hide">
 								Update
 						</button>
-						<button
+							<button
 								type="button"
 								value="Post"
 								className="button"
@@ -250,12 +284,12 @@ class DatatablesKryVersi2 extends Component {
 						</button>
 						</form>
 					</div>
-					<DatatablesKryVersi2Data data={this.state.data}  deleteKaryawan={this.deleteKaryawan} editKaryawan={this.editKaryawan} name={this.state.name}  />
+					<DatatablesKryVersi2Data data={this.state.data} deleteKaryawan={this.deleteKaryawan} editKaryawan={this.editKaryawan} name={this.state.name} />
 				</div>
 			</div>
 		);
 	}
 
-	
+
 }
 export default DatatablesKryVersi2;

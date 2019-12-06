@@ -37,7 +37,7 @@ class Home extends Component {
 	}
 
 	feedInsert(e) {
-
+		
 		e.preventDefault();
 		let data = JSON.parse(sessionStorage.getItem("userData"));
 		let dataSendIDUser = data.userData.user_id;
@@ -54,12 +54,49 @@ class Home extends Component {
 				this.refs.InputUserFeed.value = '';
 				this.setState({ data: responseJson.feedData });
 			});
-		} 
+		}
 	}
 
 	deleteFeed(e, feedId) {
-
 		let updateIndex = e.target.getAttribute('value');
+		console.log(updateIndex);
+		confirmAlert({
+			title: 'Delete Feed',
+			message: 'Are you sure to delete this feed.',
+			buttons: [
+				{
+					label: 'Yes',
+					onClick: () => {
+						console.log(updateIndex);
+						let cek = feedId;
+						let feed_id = document.getElementById("del").getAttribute("value");
+						let data = JSON.parse(sessionStorage.getItem("userData"));
+						let postData = { user_id: data.userData.user_id, feed_id: feedId };
+						if (postData) {
+							PostData('feedDelete', postData).then((result) => {
+								if (result.success) {
+									this.state.data.splice(updateIndex, 1);
+									this.setState({ data: this.state.data });
+									alert('ID : ' + feedId + ' Data Telah Dihapus');
+								}
+								else
+									alert(result.error);
+							});
+						}
+					}
+				},
+				{
+					label: 'No',
+					onClick: () => alert('Data Tidak Dihapus')
+				}
+			]
+		});
+	}
+	/* 
+	deleteFeedAction(e, feedId) {
+		
+		let updateIndex = e.target.getAttribute('value');
+		console.log(updateIndex);
 		let cek = feedId;
 		let feed_id = document.getElementById("del").getAttribute("value");
 		let data = JSON.parse(sessionStorage.getItem("userData"));
@@ -75,13 +112,14 @@ class Home extends Component {
 					alert(result.error);
 			});
 		}
-	}
+	} 
+	*/
 
 	feedEdit(e, feedEditID) {
 		let feed_idInput = this.refs.feed_id;
 		let InputUserFeedInput = this.refs.InputUserFeed;
 		let Cek = feedEditID;
-		alert('Ubah data dengan ID : '+ Cek);
+		alert('Ubah data dengan ID : ' + Cek);
 		let feed_id = feedEditID;
 		console.log(feedEditID);
 		const buttonKirim = document.getElementById('button-send');
@@ -97,12 +135,12 @@ class Home extends Component {
 					console.log(printData);
 					let feed_id = printData[0].feed_id;
 					let InputUserFeed = printData[0].feed;
-			
+
 					feed_idInput.value = printData[0].feed_id;
 					InputUserFeedInput.value = printData[0].feed;
 				}
 			});
-		} 
+		}
 	}
 
 	feedUpdate(e) {
@@ -125,9 +163,9 @@ class Home extends Component {
 				buttonKirim.style.display = 'initial';
 				const buttonUpdate = document.getElementById('button-update');
 				buttonUpdate.style.display = 'none';
-				return  this.getUserFeed();
+				return this.getUserFeed();
 			})
-			
+
 		}
 	}
 
@@ -171,7 +209,7 @@ class Home extends Component {
 	onChange(e) {
 		this.setState({ userFeed: e.target.value });
 	}
-	
+
 	logout() {
 		sessionStorage.setItem("userData", '');
 		sessionStorage.clear();
@@ -181,25 +219,25 @@ class Home extends Component {
 	render() {
 		if (this.state.redirectToReferrer) {
 			return (<Redirect to={'/login'} />)
-	}
+		}
 
 		return (
 			<div className="row" id="Body">
-				<div className="medium-12 columns" style={{textAlign:'center'}}>
-					<div style={{ paddingBottom:'50px', paddingTop:'50px' }}>
-					<a href="/home" className="button1" > <u>Halaman Utama</u></a>
-					<a href="/tabel" className="button1" > <u>Tabel</u></a>
-					<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
-					<a href="/DatatablesKaryawan" className="button1" > <u>Datatables Karyawan</u></a>
-					<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
-					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
-					<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
+				<div className="medium-12 columns" style={{ textAlign: 'center' }}>
+					<div style={{ paddingBottom: '50px', paddingTop: '50px' }}>
+						<a href="/home" className="button1" > <u>Halaman Utama</u></a>
+						<a href="/tabel" className="button1" > <u>Tabel</u></a>
+						<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
+						<a href="/DatatablesKaryawan" className="button1" > <u>Datatables Karyawan</u></a>
+						<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
+						<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
+						<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
 					</div>
 					<form onSubmit={this.feedInsert} method="post">
-						<input name="feed_id" id="feed_id" ref="feed_id" type="hidden"/>
+						<input name="feed_id" id="feed_id" ref="feed_id" type="hidden" />
 						<input name="InputUserFeed" id="InputUserFeed" ref="InputUserFeed" type="text" placeholder="Write your feed here..." />
-						<button type="submit" className="button" id="button-send" onClick={this.feedInsert} > Send </button>
-						<button type="submit" className="button" id="button-update" onClick={this.feedUpdate} > Update </button>
+						<button type="submit" className="button" id="button-send" onClick={this.feedInsert} style={{ float: 'left', minWidth: '80px' }} > Send </button>
+						<button type="submit" className="button" id="button-update" onClick={this.feedUpdate} style={{ float: 'left', minWidth: '80px' }} > Update </button>
 					</form>
 				</div>
 				<UserFeed feedData={this.state.data} deleteFeed={this.deleteFeed} feedEdit={this.feedEdit} name={this.state.name} />
