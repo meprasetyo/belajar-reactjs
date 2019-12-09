@@ -311,7 +311,6 @@ class Select extends Component {
 							<input type="text" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
 							<br />
 							
-							
 						
 						
 							<br />

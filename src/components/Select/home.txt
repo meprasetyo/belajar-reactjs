@@ -42,3 +42,8 @@ class FavouriteTeam extends Component {
 							<option key={kotaBaca.kota} value={kotaBaca.id_kota}>{kotaBaca.kota}</option>
 							)}
 							</select>
+
+
+								<select>
+							{dataKota.map(printKota => <option key={printKota.id_kota}>{printKota.kota}</option>)}
+							</select>
