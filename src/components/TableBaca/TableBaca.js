@@ -7,9 +7,7 @@ const $ = require('jquery')
 $.Datatable = require('datatables.net')
 
 export default class TableBaca extends Component {
-	constructor(props) {
-		super(props);
-	}
+
 	componentDidMount() {
 		console.log(this.el);
 		this.$el = $(this.el)

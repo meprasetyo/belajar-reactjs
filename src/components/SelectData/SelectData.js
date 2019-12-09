@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-
-import './TabelData.css';
+import Linkify from 'react-linkify';
+import './SelectData.css';
 
 //import TimeAgo from 'react-timeago';
-class TabelData extends Component {
+class SelectData extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -58,4 +58,4 @@ class TabelData extends Component {
 	}
 }
 
-export default TabelData;
+export default SelectData;

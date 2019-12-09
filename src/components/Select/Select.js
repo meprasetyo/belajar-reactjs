@@ -1,13 +1,13 @@
 // #Tabel Biasa / Bawaan  
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import './Tabel.css';
+import './Select.css';
 import { PostData } from '../../services/PostDataKaryawan';
-import TabelData from "../TabelData/TabelData";
+import SelectData from "../SelectData/SelectData";
 import { confirmAlert } from 'react-confirm-alert';
+// import '../../styles/react-confirm-alert.css';
 
-
-class Tabel extends Component {
+class Select extends Component {
 
 	constructor(props) {
 		super(props);
@@ -24,10 +24,12 @@ class Tabel extends Component {
 		this.editKaryawan = this.editKaryawan.bind(this);
 		this.clearData = this.clearData.bind(this);
 		this.logout = this.logout.bind(this);
+		this.getSelectKota = this.getSelectKota.bind(this);
 	}
 	componentWillMount() {
 		if (sessionStorage.getItem("userData")) {
 			this.getKaryawanDataThis();
+			this.getSelectKota();
 		}
 		else {
 			this.setState({ redirectToReferrer: true });
@@ -238,6 +240,37 @@ class Tabel extends Component {
 			});
 		}
 	}
+
+	getSelectKota() {
+		let data = JSON.parse(sessionStorage.getItem("userData"));
+	
+		this.setState({ name: data.userData.name });
+		let postData = { user_id: data.userData.user_id };
+		if (data) {
+			PostData('selectKota', postData).then((result) => {
+				let responseJson = result;
+				if (responseJson.dataKota) {
+					this.setState({ dataKota: responseJson.dataKota });
+					console.log(this.state.dataKota);
+		/*			let dataKota = this.state.dataKota;
+					let cekDATAINI = responseJson.dataKota;
+				
+					let selectKota = this.refs.selectKota;
+					let selectKotaLabel = this.refs.selectKota;
+					let selectKotaSelect = this.refs.selectKota;
+					let dataKotaId = dataKota[''];
+					selectKota.selected = dataKota.id_kota;
+					selectKota.label = dataKota.kota;
+				
+				
+					
+					console.log(cekDATAINI);
+					console.log(dataKotaId);
+					*/
+				}
+			});	
+		}
+	}
 	onChange(e) {
 		this.setState({ nama: e.target.value });
 		this.setState({ KTP: e.target.value });
@@ -252,10 +285,13 @@ class Tabel extends Component {
 		if (this.state.redirectToReferrer) {
 			return (<Redirect to={'/login'} />)
 		}
+		let dataKota = this.state.dataKota;
+		console.log(dataKota)
+		
 		return (
 			<div className="row" id="Body">
 				<div className="medium-12 columns">
-				<div style={{ paddingBottom: '50px', paddingTop: '50px' }}>
+				<div style={{ paddingTop:'50px', textAlign:'center' }}>
 					<a href="/home" className="button1" > <u>Halaman Utama</u></a>
 					<a href="/tabel" className="button1" > <u>Tabel</u></a>
 					<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
@@ -263,7 +299,7 @@ class Tabel extends Component {
 					<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
 					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
 					<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
-				</div>
+					</div>
 					<div className="inputDivData">
 						<h2>Belajar React CRUD</h2><br />
 						<form ref="myForm" className="myForm">
@@ -273,6 +309,12 @@ class Tabel extends Component {
 							<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" className="inputData inputDiv" />
 							<br />
 							<input type="text" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
+							<br />
+							
+							
+						
+						
+							<br />
 							<br />
 							<button
 								type="submit"
@@ -303,11 +345,11 @@ class Tabel extends Component {
 				</div>
 				<div className="App">
 					<div className="div-tbl">
-						<TabelData karyawanData={this.state.data} deleteKaryawan={this.deleteKaryawan} editKaryawan={this.editKaryawan} name={this.state.name} />
+						<SelectData karyawanData={this.state.data} deleteKaryawan={this.deleteKaryawan} editKaryawan={this.editKaryawan} name={this.state.name} />
 					</div>
 				</div>
 			</div>
 		);
 	}
 }
-export default Tabel;
+export default Select;

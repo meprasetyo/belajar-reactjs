@@ -39,6 +39,9 @@ export default class DatatablesKryVersi2Data extends Component {
 							}
 						}
 					]}
+					options={{
+						exportButton: true
+					}}
 					data={data}
 					title="Data Karyawan"
 				/>
