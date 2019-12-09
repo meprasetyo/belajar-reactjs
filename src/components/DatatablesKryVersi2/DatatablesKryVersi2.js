@@ -234,8 +234,10 @@ class DatatablesKryVersi2 extends Component {
 		sessionStorage.clear();
 		this.setState({ redirectToReferrer: true });
 	}
-
-	render() {
+	render() {	
+		if (this.state.redirectToReferrer) {
+			return (<Redirect to={'/login'} />)
+		}
 		let data = this.state.data;
 		console.log(data);
 		return (

@@ -1,10 +1,8 @@
 export function PostData(type, userData) {
 	let BaseURL = 'http://localhost/api-belajar-reactjs/karyawan.php';
 	return new Promise((resolve, reject) => {
-
 		fetch(BaseURL + '?tp=' + type,
 			{
-
 				method: 'POST',
 				headers:
 				{

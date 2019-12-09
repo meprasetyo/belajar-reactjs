@@ -7,7 +7,6 @@ import Tabel from '././components/Tabel/Tabel';
 import Login from '././components/Login/Login';
 import Signup from '././components/Signup/Signup';
 import NotFound from '././components/NotFound/NotFound';
-
 import TableBacaData from '././components/TableBacaData/TableBacaData';
 import DatatablesKry from './components/DatatablesKry/DatatablesKry';
 import DatatablesKryVersi2 from './components/DatatablesKryVersi2/DatatablesKryVersi2';
@@ -27,8 +26,6 @@ const Routes = () => (
 			<Route path="/DatatablesKaryawanVersi2" component={DatatablesKryVersi2} />	
 			<Route path="/PaginationExc" component={PaginationExc} />	
 			<Route path="*" component={NotFound} />
-
-			PaginationExc
 		</Switch>
 	</BrowserRouter>
 );
