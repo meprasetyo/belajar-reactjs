@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Des 2019 pada 10.14
+-- Waktu pembuatan: 10 Des 2019 pada 05.23
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.1
 
@@ -86,6 +86,29 @@ INSERT INTO `karyawan` (`id_karyawan`, `KTP`, `nama`, `no_hp`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `karyawannew`
+--
+
+CREATE TABLE `karyawannew` (
+  `id_karyawan` int(100) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `KTP` varchar(255) NOT NULL,
+  `no_hp` varchar(255) NOT NULL,
+  `id_kota` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `karyawannew`
+--
+
+INSERT INTO `karyawannew` (`id_karyawan`, `nama`, `KTP`, `no_hp`, `id_kota`) VALUES
+(1, 'rara', '009867111117', '0897-6789-1111', 3),
+(2, 'rara 01', '009867111116', '0897-6789-1111', 5),
+(4, 'rara 02', '009867111115', '0897-6789-1111', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `select_kota`
 --
 
@@ -147,6 +170,12 @@ ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`id_karyawan`);
 
 --
+-- Indeks untuk tabel `karyawannew`
+--
+ALTER TABLE `karyawannew`
+  ADD PRIMARY KEY (`id_karyawan`);
+
+--
 -- Indeks untuk tabel `select_kota`
 --
 ALTER TABLE `select_kota`
@@ -172,7 +201,13 @@ ALTER TABLE `feed`
 -- AUTO_INCREMENT untuk tabel `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
+  MODIFY `id_karyawan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+
+--
+-- AUTO_INCREMENT untuk tabel `karyawannew`
+--
+ALTER TABLE `karyawannew`
+  MODIFY `id_karyawan` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `select_kota`
