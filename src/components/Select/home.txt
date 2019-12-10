@@ -47,3 +47,26 @@ class FavouriteTeam extends Component {
 								<select>
 							{dataKota.map(printKota => <option key={printKota.id_kota}>{printKota.kota}</option>)}
 							</select>
+
+
+
+								{dataKota.map((KotaPrint, KotaKey) =>
+							
+							<MenuItem key={KotaKey} value={KotaPrint.id_kota}>
+							{KotaPrint.value}
+							</MenuItem>
+
+							)}
+
+
+
+							{dataKota.map((KotaPrint, KotaKey) =>
+							 <Select
+							 labelId="demo-simple-select-label"
+							 id="demo-simple-select"
+						   >
+							<MenuItem key={KotaKey} value={KotaPrint.id_kota}>
+							{KotaPrint.kota}
+							</MenuItem>
+							</Select>
+							)}

@@ -1,13 +1,11 @@
-// #Tabel Biasa / Bawaan  
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './Select.css';
 import { PostData } from '../../services/PostDataKaryawan';
 import SelectData from "../SelectData/SelectData";
 import { confirmAlert } from 'react-confirm-alert';
-// import '../../styles/react-confirm-alert.css';
 
-class Select extends Component {
+class SelectBaca extends Component {
 
 	constructor(props) {
 		super(props);
@@ -25,6 +23,7 @@ class Select extends Component {
 		this.clearData = this.clearData.bind(this);
 		this.logout = this.logout.bind(this);
 		this.getSelectKota = this.getSelectKota.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 	componentWillMount() {
 		if (sessionStorage.getItem("userData")) {
@@ -39,24 +38,29 @@ class Select extends Component {
 	karyawanInput(e) {
 		e.preventDefault();
 		console.log('udah disimpan')
-		let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value };
-		let cekNama = this.refs.nama.value;
-		let cekKTP = this.refs.ktp.value;
-		let cekHP = this.refs.no_hp.value;
-		console.log(postData)
-		if (cekNama === '') {
+		let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value, id_kota: this.refs.selectDataPrint.value };
+		let namaDataPrint = this.refs.nama.value;
+		let ktpDataPrint = this.refs.ktp.value;
+		let no_hpDataPrint = this.refs.no_hp.value;
+		let CekSlct = this.refs.selectKota.value;
+		let selectDataPrint = this.refs.selectDataPrint.value;
+		console.log('nama :', namaDataPrint)
+		console.log('KTP :', ktpDataPrint)
+		console.log('No HP :', no_hpDataPrint)
+		console.log('Select Kota :', selectDataPrint)
+		if (namaDataPrint === '') {
 			alert('Nama tidak boleh kosong');
 		}
 		else {
-			if (cekKTP === '') {
+			if (ktpDataPrint === '') {
 				alert('No KTP tidak boleh kosong');
 			}
 			else {
-				if (cekHP === '') {
+				if (no_hpDataPrint === '') {
 					alert('No HP tidak boleh kosong');
 				}
 				else {
-					PostData('karyawanInput', postData).then((result) => {
+					PostData('karyawanInputSelect', postData).then((result) => {
 						let responseJson = result;
 						this.setState({ data: responseJson.karyawanData });
 						this.refs.nama.value = '';
@@ -72,7 +76,7 @@ class Select extends Component {
 		karyawanUpdate(e) {
 			e.preventDefault();
 			console.log('udah disimpan')
-			let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value, id_karyawan:  this.refs.id_karyawan.value };
+			let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value, id_karyawan:  this.refs.id_karyawan.value, id_kota: this.refs.selectDataPrint.value };
 			let cekNama = this.refs.nama.value;
 			let cekKTP = this.refs.ktp.value;
 			let cekHP = this.refs.no_hp.value;
@@ -89,7 +93,7 @@ class Select extends Component {
 						alert('No HP tidak boleh kosong');
 					}
 					else {
-						PostData('karyawanUpdate', postData).then((result) => {
+						PostData('karyawanUpdateSelect', postData).then((result) => {
 							let responseJson = result;
 							this.setState({ data: responseJson.karyawanData });
 							this.refs.nama.value = '';
@@ -122,6 +126,7 @@ class Select extends Component {
 		let ktpINPUT = this.refs.ktp;
 		let no_hpINPUT = this.refs.no_hp;
 		let id_karyawanINPUT = this.refs.id_karyawan;
+		let selectKota = this.refs.selectKota;
 		
 		const buttonKirim = document.getElementById('kirim');
 		buttonKirim.style.display = 'none';
@@ -129,7 +134,7 @@ class Select extends Component {
 		buttonUpdate.className = 'button button3';
 		let postData = { id_karyawan: KaryawanID };
 		if (postData) {
-			PostData('karyawanEdit', postData).then((result) => {
+			PostData('karyawanEditSelect', postData).then((result) => {
 				
 				let responseJson = result;
 				if (responseJson.karyawanData) {
@@ -142,6 +147,8 @@ class Select extends Component {
 					ktpINPUT.value = cekDATAINI[0].KTP;
 					no_hpINPUT.value = cekDATAINI[0].no_hp;
 					id_karyawanINPUT.value = cekDATAINI[0].id_karyawan;
+					id_karyawanINPUT.value = cekDATAINI[0].id_karyawan;
+					selectKota.value = cekDATAINI[0].id_kota;
 				//	let cekDATA = 
 					console.log(cekDATAKTP);
 					console.log(cekDATANAMA);
@@ -150,36 +157,6 @@ class Select extends Component {
 			});
 		}
 	}
-/*	deleteKaryawan(e, KaryawanID) {
-		let updateIndex = e.target.getAttribute('value');
-		let cek = KaryawanID;
-		// alert(cek);
-		let postData = { id_karyawan: KaryawanID };
-		if (postData) {
-			PostData('karyawanDelete', postData).then((result) => {
-				//this.state.data.filter((_, i) => i == feedId);
-				if (result.success) {
-					// alert(KaryawanID);
-					this.state.data.splice(updateIndex, 1);
-					this.setState({ data: this.state.data });
-					alert('ID : ' + KaryawanID + ' Data Telah Dihapus');
-					console.log(cek);
-					console.log(updateIndex);
-					this.refs.nama.value = '';
-					this.refs.ktp.value = '';
-					this.refs.no_hp.value = '';
-					this.refs.id_karyawan.value = '';
-					const buttonKirim = document.getElementById('kirim');
-					buttonKirim.style.display = 'initial';
-					const buttonUpdate = document.getElementById('update');
-					buttonUpdate.className = 'button button3 hide';
-				}
-				else
-					alert(result.error);
-			});
-		}
-	}  */
-
 	deleteKaryawan(e, KaryawanID) {
 		let updateIndex = e.target.getAttribute('value');
 		let cek = KaryawanID;
@@ -193,7 +170,7 @@ class Select extends Component {
 					label: 'Yes',
 					onClick: () => {
 						if (postData) {
-							PostData('karyawanDelete', postData).then((result) => {
+							PostData('karyawanDeleteSelect', postData).then((result) => {
 								//this.state.data.filter((_, i) => i == feedId);
 								if (result.success) {
 									// alert(KaryawanID);
@@ -225,13 +202,12 @@ class Select extends Component {
 			]
 		});
 	}
-
 	getKaryawanDataThis() {
 		let data = JSON.parse(sessionStorage.getItem("userData"));
 		this.setState({ name: data.userData.name });
 		let postData = { user_id: data.userData.user_id };
 		if (data) {
-			PostData('karyawan', postData).then((result) => {
+			PostData('karyawanSelect', postData).then((result) => {
 				let responseJson = result;
 				if (responseJson.karyawanData) {
 					this.setState({ data: responseJson.karyawanData });
@@ -240,7 +216,6 @@ class Select extends Component {
 			});
 		}
 	}
-
 	getSelectKota() {
 		let data = JSON.parse(sessionStorage.getItem("userData"));
 	
@@ -252,24 +227,13 @@ class Select extends Component {
 				if (responseJson.dataKota) {
 					this.setState({ dataKota: responseJson.dataKota });
 					console.log(this.state.dataKota);
-		/*			let dataKota = this.state.dataKota;
-					let cekDATAINI = responseJson.dataKota;
-				
-					let selectKota = this.refs.selectKota;
-					let selectKotaLabel = this.refs.selectKota;
-					let selectKotaSelect = this.refs.selectKota;
-					let dataKotaId = dataKota[''];
-					selectKota.selected = dataKota.id_kota;
-					selectKota.label = dataKota.kota;
-				
-				
-					
-					console.log(cekDATAINI);
-					console.log(dataKotaId);
-					*/
 				}
 			});	
 		}
+	}
+	handleChange(event) {
+		this.setState({value: event.target.value});
+		//console.log(this.state.value)
 	}
 	onChange(e) {
 		this.setState({ nama: e.target.value });
@@ -286,8 +250,7 @@ class Select extends Component {
 			return (<Redirect to={'/login'} />)
 		}
 		let dataKota = this.state.dataKota;
-		console.log(dataKota)
-		
+		//console.log(dataKota)
 		return (
 			<div className="row" id="Body">
 				<div className="medium-12 columns">
@@ -298,6 +261,7 @@ class Select extends Component {
 					<a href="/DatatablesKaryawan" className="button1" > <u>Datatables Karyawan</u></a>
 					<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
 					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
+					<a href="/select" className="button1" > <u>Select Option</u></a>
 					<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
 					</div>
 					<div className="inputDivData">
@@ -310,9 +274,11 @@ class Select extends Component {
 							<br />
 							<input type="text" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
 							<br />
-							
-						
-						
+							<select  className="inputData inputDiv" value={this.state.value} ref="selectDataPrint" onChange={this.handleChange} >
+							{dataKota && dataKota.map((KotaPrint, KotaKey) =>
+								<option key={KotaKey} value={KotaPrint.id_kota} ref="selectKota">{KotaPrint.kota}</option>
+							)}
+							</select>
 							<br />
 							<br />
 							<button
@@ -351,4 +317,4 @@ class Select extends Component {
 		);
 	}
 }
-export default Select;
+export default SelectBaca;

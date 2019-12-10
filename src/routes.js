@@ -11,7 +11,7 @@ import TableBacaData from '././components/TableBacaData/TableBacaData';
 import DatatablesKry from './components/DatatablesKry/DatatablesKry';
 import DatatablesKryVersi2 from './components/DatatablesKryVersi2/DatatablesKryVersi2';
 import PaginationExc from './components/PaginationExc/PaginationExc';
-import Select from './components/Select/Select';
+import SelectBaca from './components/Select/Select';
 
 const Routes = () => (
 	<BrowserRouter >
@@ -26,7 +26,7 @@ const Routes = () => (
 			<Route path="/DatatablesKaryawan" component={DatatablesKry} />	
 			<Route path="/DatatablesKaryawanVersi2" component={DatatablesKryVersi2} />	
 			<Route path="/PaginationExc" component={PaginationExc} />	
-			<Route path="/Select" component={Select} />	
+			<Route path="/Select" component={SelectBaca} />	
 			<Route path="*" component={NotFound} />
 		
 		</Switch>
