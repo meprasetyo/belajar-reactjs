@@ -17,7 +17,7 @@ class SelectData extends Component {
 						<td className="text-center">No</td>
 						<td className="text-center">Nama</td>
 						<td className="text-center">No KTP</td>
-						<td className="text-center">No HP</td>
+						<td className="text-center">Kota</td>
 						<td className="text-center">Aksi Hapus</td>
 						<td className="text-center">Aksi Ubah</td>
 					</tr>
@@ -35,7 +35,7 @@ class SelectData extends Component {
 								{TabelData.KTP}
 							</td>
 							<td className="td-center">
-								{TabelData.no_hp}
+								{TabelData.kota}
 							</td>
 							<td className="td-center">
 								<button id="del" className="button small btn-color" onClick={(e) => this.props.deleteKaryawan(e, TabelData.id_karyawan)} data={TabelData.id_karyawan} value={Kayawan}>

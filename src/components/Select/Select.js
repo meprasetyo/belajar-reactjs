@@ -4,6 +4,7 @@ import './Select.css';
 import { PostData } from '../../services/PostDataKaryawan';
 import SelectData from "../SelectData/SelectData";
 import { confirmAlert } from 'react-confirm-alert';
+import Popup from "reactjs-popup";
 
 class SelectBaca extends Component {
 
@@ -16,6 +17,7 @@ class SelectBaca extends Component {
 		//Deklarasi Function
 		this.getKaryawanDataThis = this.getKaryawanDataThis.bind(this);
 		this.karyawanInput = this.karyawanInput.bind(this);
+		this.kotaInputGet = this.kotaInputGet.bind(this);
 		this.karyawanUpdate = this.karyawanUpdate.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.deleteKaryawan = this.deleteKaryawan.bind(this);
@@ -66,51 +68,75 @@ class SelectBaca extends Component {
 						this.refs.nama.value = '';
 						this.refs.ktp.value = '';
 						this.refs.no_hp.value = '';
-						return  this.getKaryawanDataThis();
+						return this.getKaryawanDataThis();
 					})
 				}
 			}
 		}
 	}
-		/* Aksi Create Data */
-		karyawanUpdate(e) {
-			e.preventDefault();
-			console.log('udah disimpan')
-			let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value, id_karyawan:  this.refs.id_karyawan.value, id_kota: this.refs.selectDataPrint.value };
-			let cekNama = this.refs.nama.value;
-			let cekKTP = this.refs.ktp.value;
-			let cekHP = this.refs.no_hp.value;
-			console.log(postData)
-			if (cekNama === '') {
-				alert('Nama tidak boleh kosong');
+	kotaInputGet(e) {
+		e.preventDefault();
+		console.log('udah disimpan')
+		//let postData = { kota: this.refs.kotaInput.value };
+		let kotaInput = this.refs.kotaInputData.value;
+		console.log(kotaInput)
+		/*
+		if (kotaInput === '') {
+			alert('Data tidak boleh kosong');
+			return false;
+		}
+		else {
+
+			PostData('kotaInput', postData).then((result) => {
+				let responseJson = result;
+				this.setState({ data: responseJson.karyawanData });
+				this.refs.kotaInput.value = '';
+			
+				return this.getKaryawanDataThis();
+			})
+			
+		}
+		*/
+	}
+	/* Aksi Create Data */
+	karyawanUpdate(e) {
+		e.preventDefault();
+		console.log('udah disimpan')
+		let postData = { nama: this.refs.nama.value, KTP: this.refs.ktp.value, no_hp: this.refs.no_hp.value, id_karyawan: this.refs.id_karyawan.value, id_kota: this.refs.selectDataPrint.value };
+		let cekNama = this.refs.nama.value;
+		let cekKTP = this.refs.ktp.value;
+		let cekHP = this.refs.no_hp.value;
+		console.log(postData)
+		if (cekNama === '') {
+			alert('Nama tidak boleh kosong');
+		}
+		else {
+			if (cekKTP === '') {
+				alert('No KTP tidak boleh kosong');
 			}
 			else {
-				if (cekKTP === '') {
-					alert('No KTP tidak boleh kosong');
+				if (cekHP === '') {
+					alert('No HP tidak boleh kosong');
 				}
 				else {
-					if (cekHP === '') {
-						alert('No HP tidak boleh kosong');
-					}
-					else {
-						PostData('karyawanUpdateSelect', postData).then((result) => {
-							let responseJson = result;
-							this.setState({ data: responseJson.karyawanData });
-							this.refs.nama.value = '';
-							this.refs.ktp.value = '';
-							this.refs.no_hp.value = '';
-							this.refs.id_karyawan.value = '';
-							const buttonKirim = document.getElementById('kirim');
-							buttonKirim.style.display = 'initial';
-							const buttonUpdate = document.getElementById('update');
-							buttonUpdate.className = 'button button3 hide';
-							return  this.getKaryawanDataThis();
-						})
-					}
+					PostData('karyawanUpdateSelect', postData).then((result) => {
+						let responseJson = result;
+						this.setState({ data: responseJson.karyawanData });
+						this.refs.nama.value = '';
+						this.refs.ktp.value = '';
+						this.refs.no_hp.value = '';
+						this.refs.id_karyawan.value = '';
+						const buttonKirim = document.getElementById('kirim');
+						buttonKirim.style.display = 'initial';
+						const buttonUpdate = document.getElementById('update');
+						buttonUpdate.className = 'button button3 hide';
+						return this.getKaryawanDataThis();
+					})
 				}
 			}
 		}
-	clearData(){
+	}
+	clearData() {
 		this.refs.nama.value = '';
 		this.refs.ktp.value = '';
 		this.refs.no_hp.value = '';
@@ -121,13 +147,14 @@ class SelectBaca extends Component {
 	}
 	editKaryawan(e, KaryawanID) {
 		let Cek = KaryawanID;
-		alert('Ubah data dengan ID : '+ Cek);
+		alert('Ubah data dengan ID : ' + Cek);
 		let namaINPUT = this.refs.nama;
 		let ktpINPUT = this.refs.ktp;
 		let no_hpINPUT = this.refs.no_hp;
 		let id_karyawanINPUT = this.refs.id_karyawan;
 		let selectKota = this.refs.selectKota;
-		
+		let selectDataPrint = this.refs.selectDataPrint;
+
 		const buttonKirim = document.getElementById('kirim');
 		buttonKirim.style.display = 'none';
 		const buttonUpdate = document.getElementById('update');
@@ -135,7 +162,7 @@ class SelectBaca extends Component {
 		let postData = { id_karyawan: KaryawanID };
 		if (postData) {
 			PostData('karyawanEditSelect', postData).then((result) => {
-				
+
 				let responseJson = result;
 				if (responseJson.karyawanData) {
 					// let cekDATAINI = responseJson.karyawanData;
@@ -148,11 +175,12 @@ class SelectBaca extends Component {
 					no_hpINPUT.value = cekDATAINI[0].no_hp;
 					id_karyawanINPUT.value = cekDATAINI[0].id_karyawan;
 					id_karyawanINPUT.value = cekDATAINI[0].id_karyawan;
-					selectKota.value = cekDATAINI[0].id_kota;
-				//	let cekDATA = 
+					//selectKota.value = cekDATAINI[0].id_kota;
+					selectDataPrint.value = cekDATAINI[0].id_kota;
+					//	let cekDATA = 
 					console.log(cekDATAKTP);
 					console.log(cekDATANAMA);
-					console.log(cekDATANOHP);
+					console.log(cekDATAINI[0].id_kota);
 				}
 			});
 		}
@@ -192,7 +220,7 @@ class SelectBaca extends Component {
 									alert(result.error);
 							});
 						}
-						
+
 					}
 				},
 				{
@@ -216,6 +244,7 @@ class SelectBaca extends Component {
 			});
 		}
 	}
+	/*
 	getSelectKota() {
 		let data = JSON.parse(sessionStorage.getItem("userData"));
 	
@@ -231,8 +260,25 @@ class SelectBaca extends Component {
 			});	
 		}
 	}
+	*/
+
+	getSelectKota() {
+		let data = JSON.parse(sessionStorage.getItem("userData"));
+
+		this.setState({ name: data.userData.name });
+		let postData = { user_id: data.userData.user_id };
+		if (data) {
+			PostData('selectKota', postData).then((result) => {
+				let responseJson = result;
+				if (responseJson.dataKota) {
+					this.setState({ dataKota: responseJson.dataKota });
+					console.log(this.state.dataKota);
+				}
+			});
+		}
+	}
 	handleChange(event) {
-		this.setState({value: event.target.value});
+		this.setState({ value: event.target.value });
 		//console.log(this.state.value)
 	}
 	onChange(e) {
@@ -254,30 +300,34 @@ class SelectBaca extends Component {
 		return (
 			<div className="row" id="Body">
 				<div className="medium-12 columns">
-				<div style={{ paddingTop:'50px', textAlign:'center' }}>
-					<a href="/home" className="button1" > <u>Halaman Utama</u></a>
-					<a href="/tabel" className="button1" > <u>Tabel</u></a>
-					<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
-					<a href="/DatatablesKaryawan" className="button1" > <u>Datatables Karyawan</u></a>
-					<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
-					<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
-					<a href="/select" className="button1" > <u>Select Option</u></a>
-					<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
+					<div style={{ paddingTop: '50px', textAlign: 'center' }}>
+						<a href="/home" className="button1" > <u>Halaman Utama</u></a>
+						<a href="/tabel" className="button1" > <u>Tabel</u></a>
+						<a href="/datatable" className="button1" > <u>Data Tabel</u></a>
+						<a href="/DatatablesKaryawan" className="button1" > <u>Datatables Karyawan</u></a>
+						<a href="/DatatablesKaryawanVersi2" className="button1" > <u>Material UI Karyawan</u></a>
+						<a href="/karyawan" className="button1" > <u>Karyawan</u></a>
+						<a href="/select" className="button1" > <u>Select Option</u></a>
+						<a href="#" onClick={this.logout} style={{ color: 'red' }} className="button1">  <u>Logout</u></a>
 					</div>
+
 					<div className="inputDivData">
-						<h2>Belajar React CRUD</h2><br />
+					<h2>CRUD Select & Modal</h2>
+					<br />
+					
+						<br /><br />
 						<form ref="myForm" className="myForm">
-							<input type="hidden" id="id_karyawan" ref="id_karyawan" placeholder="id_karyawan" className="inputData inputDiv" />	
+							<input type="hidden" id="id_karyawan" ref="id_karyawan" placeholder="id_karyawan" className="inputData inputDiv" />
 							<input type="text" id="nama" ref="nama" placeholder="Nama Anda" className="inputData inputDiv" />
 							<br />
-							<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" className="inputData inputDiv" />
+							<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" style={{ height: "50px" }} className="inputData inputDiv" />
 							<br />
 							<input type="text" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
 							<br />
-							<select  className="inputData inputDiv" value={this.state.value} ref="selectDataPrint" onChange={this.handleChange} >
-							{dataKota && dataKota.map((KotaPrint, KotaKey) =>
-								<option key={KotaKey} value={KotaPrint.id_kota} ref="selectKota">{KotaPrint.kota}</option>
-							)}
+							<select className="inputData inputDiv" value={this.state.value} ref="selectDataPrint" style={{ height: "50px" }} onChange={this.handleChange} >
+								{dataKota && dataKota.map((KotaPrint, KotaKey) =>
+									<option key={KotaKey} value={KotaPrint.id_kota} ref="selectKota">{KotaPrint.kota}</option>
+								)}
 							</select>
 							<br />
 							<br />
@@ -288,24 +338,63 @@ class SelectBaca extends Component {
 								onClick={this.karyawanInput}
 								className="button button3">
 								Kirim
-						</button>
-						<button
-								type="submit"
-								id="update"
-								name="update"
-								onClick={this.karyawanUpdate}
-								className="button button3 hide">
-								Update
-						</button>
-						<button
-								type="button"
-								value="Post"
-								className="button"
-								onClick={this.clearData}
-								className="button button2">
-								Batal
-						</button>
+							</button>
+								<button
+									type="submit"
+									id="update"
+									name="update"
+									onClick={this.karyawanUpdate}
+									className="button button3 hide">
+									Update
+							</button>
+								<button
+									type="button"
+									value="Post"
+									className="button"
+									onClick={this.clearData}
+									className="button button2">
+									Batal
+							</button>
 						</form>
+					</div>
+					<div style={{paddingLeft:'20px'}}>
+						<strong></strong>Tambah Data Kota : <Popup trigger={<button className="button" style={{marginLeft:'20px'}}> Klik Disini </button>} modal>
+							{close => (
+								
+								<div className="modal">
+									<a className="close" onClick={close}>
+										&times;
+        							</a>
+									<div className="header"> Tambah Kota </div>
+									<form ref="myForm" className="myForm">
+									<div className="content">
+									<br />
+									<input type="text" id="kotaInputData" ref="kotaInputData" style={{width: '80%'}} placeholder="Input Here..." className="inputData inputDiv" />
+									<br /><br /><br />
+        							</div>
+									<div className="actions" style={{ textAlign:'center'}}>
+										<button
+											type="submit"
+											id="kirim"
+											name="kirim"
+											onClick={this.kotaInputGet}
+											className="button button3">
+											Kirim
+										</button>
+										<button
+											className="button"
+											onClick={() => {
+												console.log("modal closed ");
+												close();
+											}} >
+											Batal
+          								</button>
+									</div>
+									</form>
+								</div>
+								
+							)}
+						</Popup>
 					</div>
 				</div>
 				<div className="App">

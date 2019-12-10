@@ -25,3 +25,7 @@ MATERIAL TABLE
 >>> npm install @material-ui/core
 LETAKAN PADA PUBLIC (HEAD)
 >>> <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+MODAL REACT - POPUP
+>>> npm install reactjs-popup --save
+Documentation : https://react-popup.elazizi.com/getting-started/

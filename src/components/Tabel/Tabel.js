@@ -271,7 +271,7 @@ class Tabel extends Component {
 							<input type="hidden" id="id_karyawan" ref="id_karyawan" placeholder="id_karyawan" className="inputData inputDiv" />	
 							<input type="text" id="nama" ref="nama" placeholder="Nama Anda" className="inputData inputDiv" />
 							<br />
-							<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" className="inputData inputDiv" />
+							<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" style={{ height:"50px" }}  className="inputData inputDiv" />
 							<br />
 							<input type="text" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
 							<br />

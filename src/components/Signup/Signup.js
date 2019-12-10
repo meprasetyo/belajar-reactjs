@@ -42,7 +42,7 @@ class Signup extends Component {
 					<input type="text" name="email" placeholder="Email" onChange={this.onChange} />
 					<input type="text" name="name" placeholder="Name" onChange={this.onChange} />
 					<input type="text" name="username" placeholder="Username" onChange={this.onChange} />
-					<input type="password" name="password" placeholder="Password" onChange={this.onChange} />
+					<input type="password" name="password" placeholder="Password"  style={{ height:"50px" }} onChange={this.onChange} />
 					<input type="submit" className="button" value="Sign Up" onClick={this.signup} />
 					<a href="/login">Login</a>
 				</div>

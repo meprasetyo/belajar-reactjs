@@ -257,7 +257,7 @@ class DatatablesKryVersi2 extends Component {
 							<input type="hidden" id="id_karyawan" ref="id_karyawan" placeholder="id_karyawan" className="inputData inputDiv" />
 							<input type="text" id="nama" ref="nama" placeholder="Nama Anda" className="inputData inputDiv" />
 							<br />
-							<input type="number" id="ktp" ref="ktp" placeholder="Nomor KTP" className="inputData inputDiv" />
+							<input type="number" id="ktp" ref="ktp" style={{ height:"50px" }} placeholder="Nomor KTP" className="inputData inputDiv" />
 							<br />
 							<input type="text" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
 							<br />
