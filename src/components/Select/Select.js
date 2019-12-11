@@ -62,14 +62,19 @@ class SelectBaca extends Component {
 					alert('No HP tidak boleh kosong');
 				}
 				else {
-					PostData('karyawanInputSelect', postData).then((result) => {
-						let responseJson = result;
-						this.setState({ data: responseJson.karyawanData });
-						this.refs.nama.value = '';
-						this.refs.ktp.value = '';
-						this.refs.no_hp.value = '';
-						return this.getKaryawanDataThis();
-					})
+					if (selectDataPrint === '0') {
+						alert('Silahkan pilih kota');
+					}
+					else {
+						PostData('karyawanInputSelect', postData).then((result) => {
+							let responseJson = result;
+							this.setState({ data: responseJson.karyawanData });
+							this.refs.nama.value = '';
+							this.refs.ktp.value = '';
+							this.refs.no_hp.value = '';
+							return this.getKaryawanDataThis();
+						})
+					}
 				}
 			}
 		}
@@ -77,26 +82,22 @@ class SelectBaca extends Component {
 	kotaInputGet(e) {
 		e.preventDefault();
 		console.log('udah disimpan')
-		//let postData = { kota: this.refs.kotaInput.value };
-		let kotaInput = this.refs.kotaInputData.value;
+		let postData = { kota: this.refs.kotaModal.value };
+		let kotaInput = this.refs.kotaModal.value;
 		console.log(kotaInput)
-		/*
 		if (kotaInput === '') {
 			alert('Data tidak boleh kosong');
 			return false;
 		}
 		else {
-
 			PostData('kotaInput', postData).then((result) => {
 				let responseJson = result;
-				this.setState({ data: responseJson.karyawanData });
-				this.refs.kotaInput.value = '';
-			
-				return this.getKaryawanDataThis();
+				this.setState({ data: responseJson.dataKota });
+				this.refs.kotaModal.value = '';
+				return this.getSelectKota(), this.getKaryawanDataThis();
 			})
 			
 		}
-		*/
 	}
 	/* Aksi Create Data */
 	karyawanUpdate(e) {
@@ -285,6 +286,7 @@ class SelectBaca extends Component {
 		this.setState({ nama: e.target.value });
 		this.setState({ KTP: e.target.value });
 		this.setState({ userFeed: e.target.value });
+		this.setState({ userFeed: e.kotaModal.value });
 	}
 	logout() {
 		sessionStorage.setItem("userData", '');
@@ -312,7 +314,7 @@ class SelectBaca extends Component {
 					</div>
 
 					<div className="inputDivData">
-					<h2>CRUD Select & Modal</h2>
+					<h2>CRUD Select & Update Select Option</h2>
 					<br />
 					
 						<br /><br />
@@ -325,6 +327,7 @@ class SelectBaca extends Component {
 							<input type="text" id="no_hp" ref="no_hp" placeholder="Nomor HP" className="inputData inputDiv" />
 							<br />
 							<select className="inputData inputDiv" value={this.state.value} ref="selectDataPrint" style={{ height: "50px" }} onChange={this.handleChange} >
+									<option value="0">-- Pilih Kota --</option>
 								{dataKota && dataKota.map((KotaPrint, KotaKey) =>
 									<option key={KotaKey} value={KotaPrint.id_kota} ref="selectKota">{KotaPrint.kota}</option>
 								)}
@@ -356,8 +359,29 @@ class SelectBaca extends Component {
 									Batal
 							</button>
 						</form>
+						<br /><br />
 					</div>
 					<div style={{paddingLeft:'20px'}}>
+					<form ref="myFormModal" className="myFormModal" >
+						<div className="content">
+							<br />
+							<div>
+								<strong>Tambah Data Kota : </strong><input type="text" id="kotaModal" ref="kotaModal" style={{width: '300px', display: 'inline'}} placeholder="Input Here..." className="inputData inputDiv" />
+								<button
+									type="submit"
+									id="kirimModal"
+									name="kirimModal"
+									onClick={this.kotaInputGet}
+									style={{minWidth:'80px', marginTop: '14px',marginLeft: '24px'}}
+									className="button button3">
+									Kirim
+								</button>	
+							</div>
+							<br />
+						</div>						
+					</form>
+					</div>			
+					<div style={{paddingLeft:'20px', display:'none'}} >
 						<strong></strong>Tambah Data Kota : <Popup trigger={<button className="button" style={{marginLeft:'20px'}}> Klik Disini </button>} modal>
 							{close => (
 								
@@ -366,17 +390,17 @@ class SelectBaca extends Component {
 										&times;
         							</a>
 									<div className="header"> Tambah Kota </div>
-									<form ref="myForm" className="myForm">
+									<form ref="myFormModal" className="myFormModal" >
 									<div className="content">
-									<br />
-									<input type="text" id="kotaInputData" ref="kotaInputData" style={{width: '80%'}} placeholder="Input Here..." className="inputData inputDiv" />
-									<br /><br /><br />
+										<br />
+										<input type="text" id="kotaModal" ref="kotaModal" style={{width: '80%'}} placeholder="Input Here..." className="inputData inputDiv" />
+										<br /><br /><br />
         							</div>
 									<div className="actions" style={{ textAlign:'center'}}>
 										<button
 											type="submit"
-											id="kirim"
-											name="kirim"
+											id="kirimModal"
+											name="kirimModal"
 											onClick={this.kotaInputGet}
 											className="button button3">
 											Kirim
