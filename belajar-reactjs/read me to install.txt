@@ -1,0 +1,31 @@
+INSTAL GLOBAL NPM
+>>> npm install -g create-react-app
+
+CREATE APP BY NAME
+>>> create-react-app name-app
+
+INSTALL REACT DOM
+>>> mpn install --save react-router-dom
+
+DATATABLES
+>>> mpn install --save datatables.net
+
+JQUERY
+>>> npm install jquery
+
+DATATABLES COMPONENT
+>>> npm install react-data-table-component styled-components
+
+PAGINATION
+>>> npm install react-js-pagination
+
+MATERIAL TABLE
+>>> npm install material-table --save
+@COMPONENT MATERIAL TABLE (MATERIAL UI / CORE)
+>>> npm install @material-ui/core
+LETAKAN PADA PUBLIC (HEAD)
+>>> <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+MODAL REACT - POPUP
+>>> npm install reactjs-popup --save
+Documentation : https://react-popup.elazizi.com/getting-started/

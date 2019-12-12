@@ -1,0 +1,70 @@
+time{
+	color:#666666 !important;
+	font-size: 13px;
+	font-family: 'Georgia', 'Times New Roman', Times, serif;
+}
+input[type="text"]{
+	height: 50px;
+}
+b{
+	display: block
+}
+.people-you-might-know{
+	padding:0 !important;
+	margin-bottom:10px;
+	border-radius: 5px;
+}
+.btn-color{
+	background-color: red;
+	margin-top: 18px;
+}
+.btn-color2{
+	background-color: green;
+	margin-top: 18px;
+}
+.edit-btn-color{
+	background-color: green;
+}
+.App-link {
+	color: #09d3ac;
+}
+.div-tbl{
+	margin-left: 30px;
+	margin-right: 30px;
+}
+.tbl-cls{
+	width: 100%;
+	margin-top: 30px;
+}
+.inputData{
+	width: 400px;
+}
+.inputDiv{
+	margin: auto;
+}
+.inputDivData{
+	margin: auto;
+	padding-top: 50px;
+    text-align: center;
+}
+.button2{
+	background-color: crimson;
+}
+.button3{
+	background-color: green;
+}
+#thead{
+	background: #e4e4e4;
+}
+.td-center{
+	text-align: center;
+}
+
+.tblMaterialTable{
+	max-width: 1120px;
+}
+.tblMaterialTable input{
+	padding-left: 15px;
+	border: 1px solid white;
+    box-shadow: transparent;
+}

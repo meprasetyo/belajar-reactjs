@@ -1,0 +1,42 @@
+.logout{
+	float:right;
+	margin:10px 0px;
+	border-color: transparent;
+	background-color: transparent;
+	color: black;
+	margin-top: auto;
+	font-size: 20px;
+}
+
+.button1{
+	border-color: transparent;
+    background-color: transparent;
+    color: black;
+    margin-top: -7px;
+    font-size: 20px;
+}
+
+.text-center{
+	text-align: center;
+}
+
+#button-send{
+	background-color:green;
+	color: white;
+}
+#button-send:hover{
+	background-color:#002500;
+	color: white;
+}
+
+#button-update{
+	background-color:#1682d8;
+	color: white;
+	display:none;
+}
+
+#button-update:hover{
+	background-color:#002500;
+	color: white;
+}
+
