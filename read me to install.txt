@@ -5,10 +5,10 @@ CREATE APP BY NAME
 >>> create-react-app name-app
 
 INSTALL REACT DOM
->>> mpn install --save react-router-dom
+>>> npm install --save react-router-dom
 
 DATATABLES
->>> mpn install --save datatables.net
+>>> npm install --save datatables.net
 
 JQUERY
 >>> npm install jquery
